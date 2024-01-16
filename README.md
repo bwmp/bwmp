@@ -1,6 +1,6 @@
 <p align="center">
  <a href="https://luminescent.dev">
-  <img width="40%" alt="lang" src="https://github.com/Oli-idk/Oli-idk/blob/main/l_10.png?raw=true" />
+  <img width="40%" alt="lang" src="https://github.com/bwmp/bwmp/blob/main/l_10.png?raw=true" />
  </a>
 </p>
 
