@@ -5,10 +5,7 @@
 </p>
 
 <p align="center">
-  <img src="https://api.statusbadges.me/badge/status/798738506859282482?simple=true&style=for-the-badge" alt="status">
-  <img src="https://api.statusbadges.me/badge/playing/798738506859282482?style=for-the-badge" alt="playing">
-  <img src="https://api.statusbadges.me/badge/vscode/798738506859282482?style=for-the-badge" alt="vscode">
-  <a href="https://api.statusbadges.me/openspotify/798738506859282482" target="_blank" rel="noopener"><img src="https://api.statusbadges.me/badge/spotify/798738506859282482?style=for-the-badge" alt="spotify"></a>
+  <a href="https://discord.com/users/798738506859282482"><img align="center" src="https://lanyard-profile-readme.vercel.app/api/798738506859282482?bg=23283d&borderRadius=8px"/></a>
 </p>
 
 <p align="center">
