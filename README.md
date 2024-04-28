@@ -8,7 +8,7 @@
  Hi I'm Oli or bwmp or akiradev or whatever tf i have too many things i go by.<br>
  I'm a idiot who likes to code random things and most of the time they end up breaking.<br>
  Creator and Co Owner of <a href="https://luminescent.dev">Luminescent.dev</a> and volunteer software engineer and developer for <a href="https://www.birdflop.com">BirdFlop Hosting</a><br>
- Some of my favorite projects I've made are <a href="https://github.com/bwmp/MultiShock">Multishock</a>, <a href="https://www.aethersmp.com">Aether SMP</a>
+ Some of my favorite projects I've made are <a href="https://github.com/PiShock-Inc/MultiShock">Multishock</a>, <a href="https://www.aethersmp.com">Aether SMP</a>
 </p>
 
 <p align="center">
