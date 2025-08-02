@@ -18,7 +18,7 @@
 <p align="center">
  <img alt="lang" src="https://github-readme-stats.vercel.app/api/top-langs/?username=bwmp&layout=compact&hide_border=true&langs_count=10&theme=transparent&custom_title=Languages" />
  <img alt="stats" src="https://github-readme-stats.vercel.app/api?username=bwmp&show_icons=true&hide_border=true&count_private=true&theme=transparent&custom_title=Statistics">
- <img alt="wakapi" src="https://github-readme-stats.vercel.app/api/wakatime?username=Oli&api_domain=wakapi.luminescent.dev&theme=tokyonight&custom_title=wakapi+stats+%28all+time%29&layout=compact&langs_count=12">
+ <img alt="wakapi" src="https://github-readme-stats.vercel.app/api/wakatime?username=Oli&api_domain=wakapi.luminescent.dev&theme=tokyonight&custom_title=wakapi+stats+%28all+time%29&layout=compact&hide_border=true&langs_count=12">
 </p>
 <p align="center">
  <!--START_SECTION:waka-->
