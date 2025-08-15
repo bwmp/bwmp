@@ -1,5 +1,22 @@
 #!/bin/bash
 
+# ZSH Setup Script with Oh My Zsh and Powerlevel10k
+# 
+# CONFIGURATION:
+# To use a pre-configured Powerlevel10k setup:
+# 1. Configure Powerlevel10k on any machine with 'p10k configure'
+# 2. Upload your ~/.p10k.zsh file to a public URL (GitHub, etc.)
+# 3. Update the P10K_CONFIG_URL variable below with your URL
+# 4. Run this script - it will auto-download and apply your config
+#
+# If P10K_CONFIG_URL is empty or unreachable, the script will work normally
+# and you'll need to run 'p10k configure' manually after installation.
+
+# ==== CONFIGURATION ====
+# Set your Powerlevel10k config URL here (leave empty to skip auto-download)
+P10K_CONFIG_URL="https://raw.githubusercontent.com/bwmp/bwmp/main/.p10k.zsh"
+# P10K_CONFIG_URL=""  # Uncomment this line to disable auto-download
+
 # Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -76,6 +93,19 @@ if [ ! -d "$USER_HOME/.oh-my-zsh/custom/themes/powerlevel10k" ]; then
     print_success "Powerlevel10k theme installed"
 fi
 
+# Download pre-configured p10k config (optional)
+if [ -n "$P10K_CONFIG_URL" ]; then
+    print_status "Downloading Powerlevel10k configuration..."
+    if curl -fsSL "$P10K_CONFIG_URL" -o "$USER_HOME/.p10k.zsh" 2>/dev/null; then
+        print_success "Powerlevel10k config downloaded and applied"
+    else
+        print_warning "Could not download config from $P10K_CONFIG_URL"
+        print_status "You'll need to run 'p10k configure' manually after first login"
+    fi
+else
+    print_status "No P10K_CONFIG_URL set - you'll configure Powerlevel10k manually"
+fi
+
 # Configure .zshrc for current user
 print_status "Configuring .zshrc for $CURRENT_USER..."
 cat > "$USER_HOME/.zshrc" << 'EOF'
@@ -141,6 +171,13 @@ if [ ! -d "$ROOT_HOME/.oh-my-zsh/custom/themes/powerlevel10k" ]; then
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ROOT_HOME/.oh-my-zsh/custom/themes/powerlevel10k"
 fi
 
+# Download pre-configured p10k config for root (same URL as user)
+if [ -n "$P10K_CONFIG_URL" ]; then
+    if curl -fsSL "$P10K_CONFIG_URL" -o "$ROOT_HOME/.p10k.zsh" 2>/dev/null; then
+        echo "Powerlevel10k config downloaded for root"
+    fi
+fi
+
 # Configure .zshrc for root
 cat > "$ROOT_HOME/.zshrc" << 'EOF'
 # Path to your oh-my-zsh installation.
@@ -194,7 +231,14 @@ print_success "Default shell changed to zsh for root"
 
 print_success "Zsh setup completed!"
 print_status "Please log out and log back in (or restart your terminal) to start using zsh"
-print_status "When you first start zsh, Powerlevel10k will guide you through the configuration"
+
+# Check if config was downloaded
+if [ -f "$USER_HOME/.p10k.zsh" ]; then
+    print_success "Powerlevel10k is pre-configured and ready to use!"
+else
+    print_status "When you first start zsh, Powerlevel10k will guide you through the configuration"
+fi
+
 print_status "You can reconfigure the theme anytime by running: p10k configure"
 
 echo ""
