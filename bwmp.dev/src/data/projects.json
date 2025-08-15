@@ -1,0 +1,92 @@
+[
+  {
+    "title": "Mineplace",
+    "description": "A brief description of what this project does.",
+    "imageUrl": "/mineplace.svg",
+    "tech": [
+      "Qwik",
+      "Minecraft"
+    ],
+    "links": [
+      {
+        "name": "Visit Website",
+        "url": "https://mineplace.me",
+        "icon": "website"
+      },
+      {
+        "name": "Github",
+        "url": "https://github.com/mineplace-me",
+        "icon": "github"
+      }
+    ]
+  },
+  {
+    "title": "AetherSMP",
+    "description": "A Survival Minecraft server featuring custom Aether-themed world generation!",
+    "imageComponentKey": "AetherSMP",
+    "tech": [
+      "Qwik",
+      "TypeScript",
+      "Minecraft"
+    ],
+    "links": [
+      {
+        "name": "Visit Website",
+        "url": "https://aethersmp.com",
+        "icon": "website"
+      },
+      {
+        "name": "Github",
+        "url": "https://github.com/aetherminecraft",
+        "icon": "github"
+      }
+    ]
+  },
+  {
+    "title": "Lumin",
+    "description": "A silly little moon themed bot. Interactions, Utilities, Fun!",
+    "imageComponentKey": "Lumin",
+    "tech": [
+      "Qwik",
+      "TypeScript"
+    ],
+    "links": [
+      {
+        "name": "Visit Website",
+        "url": "https://lumin.luminescent.dev",
+        "icon": "website"
+      },
+      {
+        "name": "Github",
+        "url": "https://github.com/bwmp/lumin",
+        "icon": "github"
+      },
+      {
+        "name": "Discord",
+        "url": "https://discord.gg/lumin",
+        "icon": "discord"
+      }
+    ]
+  },
+  {
+    "title": "TwinkForSale",
+    "description": "A private/application only file sharing website I made using 80% ai just to see how far i could get it to go! All files are saved to an s3 bucket, it supports multiple domains, and has discord oauth for login.",
+    "imageComponentKey": "TwinkForSale",
+    "tech": [
+      "Qwik",
+      "TypeScript"
+    ],
+    "links": [
+      {
+        "name": "Visit Website",
+        "url": "https://twink.forsale",
+        "icon": "website"
+      },
+      {
+        "name": "Github",
+        "url": "https://github.com/luminescentdev/twinkforsale",
+        "icon": "github"
+      }
+    ]
+  }
+]
