@@ -75,12 +75,12 @@ export default component$(() => {
             user?.display_name ||
             user?.global_name ||
             user?.username ||
-            'Welcome';
+            'Oli';
           const avatarUrl = user?.avatar
             ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${user.avatar.startsWith('a_') ? 'gif' : 'png'}?size=128`
             : 'https://cdn.discordapp.com/embed/avatars/0.png';
           return (
-            <div class="flex items-center gap-6 md:gap-10">
+            <div class="flex flex-col items-center gap-6 text-center md:flex-row md:items-center md:gap-10 md:text-left">
               <img
                 src={avatarUrl}
                 alt={`${display} profile picture`}
@@ -88,47 +88,47 @@ export default component$(() => {
                 height={96}
                 loading="lazy"
                 decoding="async"
-                class="h-24 w-24 rounded-full border border-gray-700 object-cover md:h-28 md:w-28"
+                class="h-20 w-20 rounded-full border border-gray-700 object-cover sm:h-24 sm:w-24 md:h-28 md:w-28"
               />
               <div class="flex-1">
-                <p class="mb-4 text-3xl font-extrabold tracking-tight text-gray-100 sm:text-5xl">
+                <p class="mb-3 text-2xl font-extrabold tracking-tight text-gray-100 sm:text-3xl md:mb-4 lg:text-4xl">
                   Hi, I'm {display}
                 </p>
-                <h1 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-100 sm:text-3xl">
+                <h1 class="mb-4 text-xl font-extrabold tracking-tight text-gray-100 sm:text-2xl md:text-3xl">
                   Making random, hopefully useful projects!
                 </h1>
-                <p class="mb-6 max-w-2xl text-gray-300">
+                <p class="mb-6 text-sm text-gray-300 sm:text-base md:max-w-2xl">
                   I'm a self taught full-stack developer with skills in many
                   different technologies.
-                  <br />
+                  <br class="hidden sm:block" />
                   I kinda just fuck around and find out with a lot of what I do
                   but it works out
-                  <br />I am a quick learner when it comes to picking up new
+                  <br class="hidden sm:block" />I am a quick learner when it comes to picking up new
                   technologies!
                 </p>
-                <div class="mb-6 flex flex-wrap items-center gap-3">
+                <div class="mb-6 flex flex-wrap justify-center items-center gap-2 sm:gap-3 md:justify-start">
                   <Tag name="Qwik" iconSrc="/qwik.svg" />
                   <Tag name="TypeScript" />
                   <Tag name="TailwindCSS" />
                 </div>
-                <div class="flex flex-wrap gap-3">
+                <div class="flex flex-wrap justify-center gap-2 sm:gap-3 md:justify-start">
                   <a
                     href="#projects"
-                    class="lum-btn rounded-lum lum-bg-orange-700/70 hover:lum-bg-orange-700 px-4 py-2 text-white transition"
+                    class="lum-btn rounded-lum lum-bg-orange-700/70 hover:lum-bg-orange-700 px-3 py-2 text-sm text-white transition sm:px-4 sm:text-base"
                     aria-label="Skip to projects"
                   >
                     View Projects
                   </a>
                   <a
                     href="mailto:oli@bwmp.dev"
-                    class="lum-btn rounded-lum lum-bg-transparent hover:lum-bg-gray-800/60 border border-gray-700 px-4 py-2 text-gray-100 transition"
+                    class="lum-btn rounded-lum lum-bg-transparent hover:lum-bg-gray-800/60 border border-gray-700 px-3 py-2 text-sm text-gray-100 transition sm:px-4 sm:text-base"
                     aria-label="Contact via email"
                   >
                     Email
                   </a>
                   <a
                     href="/discord"
-                    class="lum-btn rounded-lum lum-bg-transparent hover:lum-bg-gray-800/60 border border-gray-700 px-4 py-2 text-gray-100 transition"
+                    class="lum-btn rounded-lum lum-bg-transparent hover:lum-bg-gray-800/60 border border-gray-700 px-3 py-2 text-sm text-gray-100 transition sm:px-4 sm:text-base"
                     aria-label="Contact via Discord"
                   >
                     Discord
@@ -141,10 +141,10 @@ export default component$(() => {
       </section>
 
       <section id="projects" aria-labelledby="projects-title">
-        <h2 id="projects-title" class="mb-4 text-2xl font-bold text-gray-100">
+        <h2 id="projects-title" class="mb-6 text-2xl font-bold text-gray-100 sm:text-3xl">
           Projects
         </h2>
-        <div class="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
           {(projects as ProjectData[]).map((p) => (
             <Project
               key={p.title}

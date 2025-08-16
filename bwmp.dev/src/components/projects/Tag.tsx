@@ -10,7 +10,7 @@ interface TagProps {
 
 export const Tag = component$<TagProps>(({ name, icon, iconSrc, iconAlt, iconSize = 16 }) => {
   return (
-    <p class="lum-btn lum-bg-blue-800/50 rounded-lum text-xs gap-1.5 font-semibold p-1 pr-2 flex items-center">
+    <p class="lum-btn lum-bg-blue-800/50 rounded-lum text-xs gap-1.5 font-semibold p-1.5 pr-2.5 flex items-center">
       {icon ? (
         <span class="inline-block w-4 h-4">{icon}</span>
       ) : iconSrc ? (

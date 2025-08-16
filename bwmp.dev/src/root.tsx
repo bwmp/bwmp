@@ -17,17 +17,17 @@ export default component$(() => {
       <head>
         <meta charset="utf-8" />
         {!isDev && (
-          <link
-            rel="manifest"
-            href={`${import.meta.env.BASE_URL}manifest.json`}
-          />
-        )}
-        {!isDev && (
-          <script
-            defer
-            src="https://umami.bwmp.dev/script.js"
-            data-website-id="9eec2f25-2735-4b2c-9464-7612f1a5b005"
-          />
+          <>
+            <link
+              rel="manifest"
+              href={`${import.meta.env.BASE_URL}manifest.json`}
+            />
+            <script
+              defer
+              src="https://umami.bwmp.dev/script.js"
+              data-website-id="8b67ff47-6901-4d08-92d6-572477ef0468"
+            />
+          </>
         )}
         <RouterHead />
       </head>

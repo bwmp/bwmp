@@ -1,4 +1,4 @@
-import { component$, JSX } from '@builder.io/qwik';
+import { component$, JSX, useSignal, $ } from '@builder.io/qwik';
 import { Tag } from './Tag';
 import { LogoDiscord } from '@luminescent/ui-qwik';
 import { Github, Globe } from 'lucide-icons-qwik';
@@ -26,6 +26,12 @@ interface ProjectProps {
 }
 
 export default component$<ProjectProps>((props) => {
+  const isActive = useSignal(false);
+
+  const handleClick = $(() => {
+    isActive.value = !isActive.value;
+  });
+
   const techIconSrc: Record<string, string> = {
     Qwik: '/qwik.svg',
     Minecraft: '/minecraft.avif',
@@ -51,7 +57,7 @@ export default component$<ProjectProps>((props) => {
           alt={props.imageAlt ?? props.title}
           width={props.imageWidth ?? 200}
           height={props.imageHeight ?? 200}
-          class="mx-auto mb-5"
+          class="mx-auto mb-4 h-auto max-w-full sm:mb-5"
         />
       );
     } else if (props.imageUrl) {
@@ -61,7 +67,7 @@ export default component$<ProjectProps>((props) => {
           alt={props.imageAlt ?? props.title}
           width={props.imageWidth ?? 200}
           height={props.imageHeight ?? 200}
-          class="mx-auto mb-5"
+          class="mx-auto mb-4 h-auto max-w-full sm:mb-5"
         />
       );
     }
@@ -69,42 +75,54 @@ export default component$<ProjectProps>((props) => {
   };
 
   return (
-    <div class="lum-card lum-bg-gray-800/30 group relative max-w-76 min-w-76 overflow-hidden">
+    <div
+      class="lum-card lum-bg-gray-800/30 group relative w-full cursor-pointer overflow-hidden sm:max-w-76 sm:min-w-76 sm:cursor-default"
+      onClick$={handleClick}
+    >
       {renderImage()}
-      <h3 class="text-xl font-bold text-gray-100">{props.title}</h3>
+      <h3 class="mb-3 text-lg font-bold text-gray-100 sm:text-xl">
+        {props.title}
+      </h3>
       {props.tech && props.tech.length > 0 && (
-        <div class="flex flex-wrap items-center gap-2">
+        <div class="mb-3 flex flex-wrap items-center gap-1.5 sm:gap-2">
           {props.tech.map((t) => (
             <Tag key={t} name={t} iconSrc={techIconSrc[t]} />
           ))}
         </div>
       )}
-      <p class="text-sm text-gray-400">{props.description}</p>
+      <p class="mb-4 text-sm leading-relaxed text-gray-400 sm:mb-0">
+        {props.description}
+      </p>
       {(() => {
         const links = props.links || [];
 
         return links.length > 0 ? (
           <div
             class={{
-              'lum-card lum-bg-gray-900/50 pointer-events-none absolute inset-0 z-10 h-full w-full !gap-2 !border-0 !p-2 !text-white opacity-0 backdrop-blur-xl transition duration-300 ease-out group-hover:opacity-100 hover:duration-75':
+              'lum-card lum-bg-gray-900/50 pointer-events-none absolute inset-0 z-10 h-full w-full !gap-2 !border-0 !p-3 !text-white backdrop-blur-xl transition duration-300 ease-out sm:!p-2':
                 true,
+              'opacity-100': isActive.value,
+              'opacity-0 group-hover:opacity-100 hover:duration-75':
+                !isActive.value,
             }}
           >
-            {links.map((link) => (
-              <a
-                key={link.name}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                draggable={false}
-                class="lum-btn rounded-lum-2 lum-bg-transparent hover:lum-bg-orange-900/20 pointer-events-auto flex h-full w-full flex-col items-center justify-center gap-2 transition-all"
-              >
-                {link.icon && linkIcons[link.icon] && (
-                  <span class="inline-block">{linkIcons[link.icon]}</span>
-                )}
-                {link.name}
-              </a>
-            ))}
+            <div class="flex h-full w-full flex-col gap-2 sm:gap-1">
+              {links.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  draggable={false}
+                  class="lum-btn rounded-lum-2 lum-bg-transparent hover:lum-bg-orange-900/20 pointer-events-auto flex flex-1 items-center justify-center gap-2 py-3 transition-all sm:flex-col sm:gap-2 sm:py-0"
+                >
+                  {link.icon && linkIcons[link.icon] && (
+                    <span class="inline-block">{linkIcons[link.icon]}</span>
+                  )}
+                  <span class="text-sm font-medium">{link.name}</span>
+                </a>
+              ))}
+            </div>
           </div>
         ) : null;
       })()}
