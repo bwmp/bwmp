@@ -91,7 +91,7 @@ export default component$(() => {
 
   return (
     <div>
-      <section class="relative flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 px-4">
+      <section class="relative flex min-h-dvh items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 px-4">
         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10"></div>
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-700/20 via-gray-900/40 to-gray-900"></div>
 
@@ -260,7 +260,7 @@ export const head: DocumentHead = {
   meta: [
     {
       name: 'description',
-      content: 'My personal/portfolio website',
+      content: 'My personal website, mainly used to show off my projects and other stuff.',
     },
   ],
 };
