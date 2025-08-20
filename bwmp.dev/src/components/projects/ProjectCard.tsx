@@ -1,6 +1,6 @@
 import { component$, JSX, useSignal, $ } from '@builder.io/qwik';
 import { Tag } from './Tag';
-import { LogoDiscord } from '@luminescent/ui-qwik';
+import { LogoBirdflop, LogoDiscord } from '@luminescent/ui-qwik';
 import { Github, Globe } from 'lucide-icons-qwik';
 
 import AetherSMPImg from '~/components/images/AetherSMP.png?jsx';
@@ -13,7 +13,8 @@ interface ProjectLink {
   icon?: string;
 }
 
-interface ProjectProps {
+export interface Project {
+  id: string;
   title: string;
   description: string;
   imageUrl?: string;
@@ -25,7 +26,11 @@ interface ProjectProps {
   links?: ProjectLink[];
 }
 
-export default component$<ProjectProps>((props) => {
+type ProjectCardProps = {
+  project: Project;
+};
+
+export default component$<ProjectCardProps>(({ project }) => {
   const isActive = useSignal(false);
 
   const handleClick = $(() => {
@@ -47,26 +52,41 @@ export default component$<ProjectProps>((props) => {
     AetherSMP: AetherSMPImg,
     TwinkForSale: TwinkForSaleImg,
     Lumin: LuminImg,
+    Birdflop: <LogoBirdflop size={200} class="mx-auto mb-5 w-25 h-25 md:w-50 md:h-50" fillGradient={['#54daf4', '#545eb6']} />,
   };
 
   const renderImage = () => {
-    if (props.imageComponentKey && imageRegistry[props.imageComponentKey]) {
-      const Img = imageRegistry[props.imageComponentKey];
-      return (
-        <Img
-          alt={props.imageAlt ?? props.title}
-          width={props.imageWidth ?? 200}
-          height={props.imageHeight ?? 200}
-          class="mx-auto mb-4 h-auto max-w-full sm:mb-5"
-        />
-      );
-    } else if (props.imageUrl) {
+    if (project.imageComponentKey && imageRegistry[project.imageComponentKey]) {
+      const entry = imageRegistry[project.imageComponentKey];
+      if (typeof entry === 'function') {
+        const Img = entry;
+        return (
+          <Img
+            alt={project.imageAlt ?? project.title}
+            width={project.imageWidth ?? 200}
+            height={project.imageHeight ?? 200}
+            class="mx-auto mb-4 h-auto max-w-full sm:mb-5"
+          />
+        );
+      } else if (typeof entry === 'string') {
+        return (
+          <img
+            src={entry}
+            alt={project.imageAlt ?? project.title}
+            width={project.imageWidth ?? 200}
+            height={project.imageHeight ?? 200}
+            class="mx-auto mb-4 h-auto max-w-full sm:mb-5"
+          />
+        );
+      }
+      return <div class="mx-auto mb-4 flex items-center justify-center sm:mb-5">{entry}</div>;
+    } else if (project.imageUrl) {
       return (
         <img
-          src={props.imageUrl}
-          alt={props.imageAlt ?? props.title}
-          width={props.imageWidth ?? 200}
-          height={props.imageHeight ?? 200}
+          src={project.imageUrl}
+          alt={project.imageAlt ?? project.title}
+          width={project.imageWidth ?? 200}
+          height={project.imageHeight ?? 200}
           class="mx-auto mb-4 h-auto max-w-full sm:mb-5"
         />
       );
@@ -76,25 +96,25 @@ export default component$<ProjectProps>((props) => {
 
   return (
     <div
-      class="lum-card lum-bg-gray-800/30 group relative w-full cursor-pointer overflow-hidden sm:max-w-76 sm:min-w-76 sm:cursor-default"
+      class="lum-card lum-bg-gray-800/30 group relative w-full h-full cursor-pointer overflow-hidden sm:max-w-76 sm:min-w-76 sm:cursor-default"
       onClick$={handleClick}
     >
       {renderImage()}
       <h3 class="mb-3 text-lg font-bold text-gray-100 sm:text-xl">
-        {props.title}
+        {project.title}
       </h3>
-      {props.tech && props.tech.length > 0 && (
+      {project.tech && project.tech.length > 0 && (
         <div class="mb-3 flex flex-wrap items-center gap-1.5 sm:gap-2">
-          {props.tech.map((t) => (
+          {project.tech.map((t) => (
             <Tag key={t} name={t} iconSrc={techIconSrc[t]} />
           ))}
         </div>
       )}
       <p class="mb-4 text-sm leading-relaxed text-gray-400 sm:mb-0">
-        {props.description}
+        {project.description}
       </p>
       {(() => {
-        const links = props.links || [];
+        const links = project.links || [];
 
         return links.length > 0 ? (
           <div

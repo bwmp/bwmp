@@ -1,11 +1,27 @@
-import { component$ } from '@builder.io/qwik';
+import { $, component$, useOnDocument, useSignal } from '@builder.io/qwik';
 import { Link } from '@builder.io/qwik-city';
 import { LogoDiscord, LogoLuminescentFull, Nav } from '@luminescent/ui-qwik';
 import { Github } from 'lucide-icons-qwik';
 
 export default component$(() => {
+  const hidden = useSignal(true);
+
+  useOnDocument(
+    'scroll',
+    $(() => {
+      hidden.value = window.scrollY < 10;
+    }),
+  );
+
   return (
-    <Nav floating fixed colorClass="lum-bg-lum-input-bg/50 !text-lum-text">
+    <Nav
+      floating
+      fixed
+      colorClass="lum-bg-lum-input-bg/50 !text-lum-text"
+      class={{
+        '-mt-20': hidden.value,
+      }}
+    >
       <Link
         q:slot="start"
         href="/"

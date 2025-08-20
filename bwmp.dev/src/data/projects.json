@@ -1,7 +1,7 @@
 [
   {
     "title": "Mineplace",
-    "description": "A brief description of what this project does.",
+    "description": "Mineplace is a 3d reimagination of the popular reddit community, r/place. It allows users to place pixels on a large canvas in a 3D space, creating a collaborative art piece.",
     "imageUrl": "/mineplace.svg",
     "tech": [
       "Qwik",
@@ -86,6 +86,32 @@
         "name": "Github",
         "url": "https://github.com/luminescentdev/twinkforsale",
         "icon": "github"
+      }
+    ]
+  },
+  {
+    "title": "Birdflop",
+    "description": "A registered 501(c)(3) nonprofit server host aiming to provide affordable and accessible hosting and resources.",
+    "imageComponentKey": "Birdflop",
+    "tech": [
+      "Qwik",
+      "Minecraft"
+    ],
+    "links": [
+      {
+        "name": "Visit Website",
+        "url": "https://birdflop.com",
+        "icon": "website"
+      },
+      {
+        "name": "Github",
+        "url": "https://github.com/birdflop/web",
+        "icon": "github"
+      },
+      {
+        "name": "Discord",
+        "url": "https://discord.gg/nmgtX5z",
+        "icon": "discord"
       }
     ]
   }
