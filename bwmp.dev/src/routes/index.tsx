@@ -12,7 +12,6 @@ import { useLanyardStatus } from '~/components/discord/useLanyardStatus';
 import GitHubStats from '~/components/github/GitHubStats';
 import TechShowcase from '~/components/skills/TechShowcase';
 import {
-  getDiscordBannerUrl,
   getLanyardData,
   type LanyardData,
 } from '~/lib/discord';
@@ -22,7 +21,7 @@ type DiscordUser = NonNullable<LanyardData['data']>['discord_user'];
 
 export const useDiscordUser = routeLoader$<{
   user: DiscordUser;
-  bannerUrl: string | null;
+  bannerUrl: string | undefined;
   isSafari: boolean;
 } | null>(async (req) => {
   try {
@@ -30,7 +29,7 @@ export const useDiscordUser = routeLoader$<{
       req.request.headers.get('user-agent')?.includes('Safari') || false;
     const userid = '798738506859282482';
     const lanyardData = await getLanyardData(userid);
-    const bannerUrl = await getDiscordBannerUrl(userid);
+    const bannerUrl = lanyardData.data?.kv?.banner;
     if (!lanyardData.success || !lanyardData.data?.discord_user) {
       console.error('Failed to fetch Discord user data:', lanyardData.error);
       return null;
