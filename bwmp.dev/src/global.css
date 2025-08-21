@@ -11,7 +11,7 @@
 
 @theme {
   --lum-default-alpha: 70;
-  --lum-border-radius: 1rem;
+  --lum-border-radius: 2rem;
   --color-green: var(--color-green-900);
   --color-red: var(--color-red-900);
   --color-orange: var(--color-orange-900);

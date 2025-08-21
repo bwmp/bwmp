@@ -56,6 +56,9 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.6.11
         version: 0.6.14(prettier@3.3.3)
+      simple-icons-qwik:
+        specifier: ^15.11.0
+        version: 15.11.0
       tailwindcss:
         specifier: ^4.0.0
         version: 4.1.11
@@ -2610,6 +2613,10 @@ packages:
   side-channel@1.1.0:
     resolution: {integrity: sha512-ZX99e6tRweoUXqR+VBrslhda51Nh5MTQwou5tnUDgbtyM0dBgmhEDtWGP/xbKn6hqfPRHujUNwz5fy/wbbhnpw==}
     engines: {node: '>= 0.4'}
+
+  simple-icons-qwik@15.11.0:
+    resolution: {integrity: sha512-w3u0FuwgLGCPKVUHP6Cdxe31+JmRcy9Eahr9Xl8dDmJMBZaGD3fY08LlLVsab4aMvZOU6+rC9SYFPo78byHfOA==}
+    engines: {node: '>=16.8.0 <18.0.0 || >=18.11', npm: please-use-pnpm, pnpm: '>=8.6.12', yarn: please-use-pnpm}
 
   simple-swizzle@0.2.2:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}
@@ -5653,6 +5660,8 @@ snapshots:
       side-channel-list: 1.0.0
       side-channel-map: 1.0.1
       side-channel-weakmap: 1.0.2
+
+  simple-icons-qwik@15.11.0: {}
 
   simple-swizzle@0.2.2:
     dependencies:
