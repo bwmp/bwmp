@@ -1,0 +1,47 @@
+[
+  {
+    "id": "simplymc",
+    "project": "SimplyMC",
+    "description": "A Minecraft multitool for developers, server owners and players. This project has now been merged directly into the birdflop website and is still worked on there.",
+    "start": "2021-01-03",
+    "end": "2024-02-21",
+    "role": "Founder / Lead Dev",
+    "tech": ["Qwik", "Minecraft"]
+  },
+  {
+    "id": "birdflop",
+    "project": "Birdflop",
+    "description": "A registered 501(c)(3) nonprofit server host aiming to provide affordable and accessible hosting and resources.",
+    "start": "2021-07-18",
+    "end": null,
+    "role": "Director, Developer, Support",
+    "tech": ["Qwik", "Minecraft"]
+  },
+  {
+    "id": "pishock",
+    "project": "PiShock",
+    "description": "Currently a developer for PiShock, I work on various parts such as the website, a desktop application, and more miscellaneous things.",
+    "start": "2024-06-19",
+    "end": null,
+    "role": "Full Stack Dev",
+    "tech": ["Vue", "Python", "C#"]
+  },
+  {
+    "id": "mineplace",
+    "project": "Mineplace",
+    "description": "Mineplace is a 3D reimagination of the popular reddit community, r/place. It allows users to place pixels on a large canvas in a 3D space, creating a collaborative art piece.",
+    "start": "2025-08-09",
+    "end": null,
+    "role": "Founder / Lead Dev",
+    "tech": ["Qwik", "Minecraft"]
+  },
+  {
+    "id": "lumin",
+    "project": "Lumin",
+    "description": "A silly little moon themed bot. Interactions, Utilities, Fun!",
+    "start": "2020-08-27",
+    "end": null,
+    "role": "Creator",
+    "tech": ["Typescript", "Qwik"]
+  }
+]

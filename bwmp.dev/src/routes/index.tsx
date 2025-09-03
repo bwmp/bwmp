@@ -9,12 +9,10 @@ import { type ModrinthProject } from '~/components/projects/ModrinthCard';
 import LanyardActivities from '~/components/discord/LanyardActivities';
 import DiscordStatus from '~/components/discord/DiscordStatus';
 import { useLanyardStatus } from '~/components/discord/useLanyardStatus';
-import GitHubStats from '~/components/github/GitHubStats';
+// import GitHubStats from '~/components/github/GitHubStats';
 import TechShowcase from '~/components/skills/TechShowcase';
-import {
-  getLanyardData,
-  type LanyardData,
-} from '~/lib/discord';
+import { Timeline } from '~/components/projects/Timeline';
+import { getLanyardData, type LanyardData } from '~/lib/discord';
 import projects from '~/data/projects.json';
 
 type DiscordUser = NonNullable<LanyardData['data']>['discord_user'];
@@ -214,7 +212,7 @@ export default component$(() => {
       </section>
 
       <div class="mx-auto max-w-7xl px-4 py-10">
-        <section
+        {/* <section
           id="github-stats"
           aria-labelledby="github-stats-title"
           class="mb-16"
@@ -226,6 +224,20 @@ export default component$(() => {
             GitHub Activity
           </h2>
           <GitHubStats />
+        </section> */}
+
+        <section id="timeline" aria-labelledby="timeline-title" class="mb-16">
+          <h2
+            id="timeline-title"
+            class="mb-6 text-2xl font-bold text-gray-100 sm:text-3xl"
+          >
+            Timeline
+          </h2>
+          <p class="mb-6 max-w-3xl text-sm leading-relaxed text-gray-400 sm:text-base">
+            A quick look at when I started certain projects/jobs and how long
+            I've been working on them.
+          </p>
+          <Timeline />
         </section>
 
         <section id="projects" aria-labelledby="projects-title" class="mb-16">

@@ -1,6 +1,5 @@
 import { component$ } from '@builder.io/qwik';
 import { Download, Heart } from 'lucide-icons-qwik';
-
 export type ModrinthProject = {
   id: string;
   slug: string;
@@ -36,7 +35,7 @@ export default component$<ModrinthCardProps>(({ project }) => {
       href={`https://modrinth.com/plugin/${project.slug}`}
       target="_blank"
       rel="noopener noreferrer"
-      class="lum-card lum-bg-gray-800/30 group relative block h-full w-full overflow-hidden transition-all duration-300 hover:scale-105"
+      class="lum-card lum-hoverable lum-bg-gray-800/30 relative h-full w-full"
     >
       <div class="flex h-full flex-col">
         {project.icon_url && (

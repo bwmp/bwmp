@@ -1,5 +1,5 @@
 import { component$ } from '@builder.io/qwik';
-
+import { Hoverable } from '@luminescent/ui-qwik';
 interface Skill {
   name: string;
   icon?: any;
@@ -116,7 +116,9 @@ export default component$(() => {
                 {categorySkills.map((skill) => (
                   <div
                     key={skill.name}
-                    class="group relative overflow-hidden rounded-xl border border-gray-700/30 bg-gradient-to-br from-gray-800/50 to-gray-900/80 p-4 transition-all duration-300 hover:scale-105 hover:border-gray-600/50 hover:shadow-lg hover:shadow-gray-900/25"
+                    class="group lum-card lum-hoverable relative overflow-hidden"
+                    onMouseMove$={(e, el) => Hoverable.onMouseMove$(e, el)}
+                    onMouseLeave$={(e, el) => Hoverable.onMouseLeave$(e, el)}
                   >
                     <div
                       class={`absolute inset-0 bg-gradient-to-br ${skill.color || 'from-gray-600 to-gray-700'} opacity-0 transition-opacity duration-300 group-hover:opacity-10`}

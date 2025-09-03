@@ -242,7 +242,7 @@ export default component$((props: UniversalCarouselProps) => {
             <div
               ref={scroller}
               class={[
-                'hide-scrollbar flex gap-2 overflow-x-auto pb-2 sm:pb-3',
+                'hide-scrollbar flex gap-2 overflow-x-auto py-2 sm:py-3 min-w-full',
                 'touch-pan-x snap-x snap-mandatory scroll-smooth',
                 'scroll-px-4',
                 itemCount === 1 ? 'justify-center' : '',

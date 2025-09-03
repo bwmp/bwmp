@@ -1,5 +1,6 @@
 import { component$, JSX, useSignal, $ } from '@builder.io/qwik';
 import { Tag } from './Tag';
+import { techIconSrc } from '~/data/techIcons';
 import { LogoBirdflop, LogoDiscord } from '@luminescent/ui-qwik';
 import { Github, Globe } from 'lucide-icons-qwik';
 
@@ -36,11 +37,6 @@ export default component$<ProjectCardProps>(({ project }) => {
   const handleClick = $(() => {
     isActive.value = !isActive.value;
   });
-
-  const techIconSrc: Record<string, string> = {
-    Qwik: '/qwik.svg',
-    Minecraft: '/minecraft.avif',
-  };
 
   const linkIcons: Record<string, JSX.Element> = {
     website: <Globe class="h-5 w-5" />,
