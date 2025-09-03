@@ -1,7 +1,4 @@
-// Centralized technology icon mapping for reuse across components.
-// Add new technologies here so they become available everywhere.
-
-export type TechIconKey = string; // You can narrow this union if you want stricter typing.
+export type TechIconKey = string;
 
 export const techIconSrc: Record<TechIconKey, string> = {
   Qwik: '/qwik.svg',
@@ -13,7 +10,15 @@ export const techIconSrc: Record<TechIconKey, string> = {
   'Node.js': '/nodejs.svg',
 };
 
-// Helper to safely read an icon (returns undefined if missing)
+const techIconSrcLower: Record<string, string> = Object.keys(techIconSrc).reduce(
+  (acc, key) => {
+    acc[key.toLowerCase()] = techIconSrc[key];
+    return acc;
+  },
+  {} as Record<string, string>,
+);
+
 export function getTechIcon(name: string): string | undefined {
-  return techIconSrc[name];
+  if (!name) return undefined;
+  return techIconSrc[name] ?? techIconSrcLower[name.toLowerCase()];
 }

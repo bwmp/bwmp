@@ -42,6 +42,6 @@
     "start": "2020-08-27",
     "end": null,
     "role": "Creator",
-    "tech": ["Typescript", "Qwik"]
+    "tech": ["TypeScript", "Qwik"]
   }
 ]
