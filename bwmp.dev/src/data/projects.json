@@ -5,7 +5,8 @@
     "imageUrl": "/mineplace.svg",
     "tech": [
       "Qwik",
-      "Minecraft"
+      "Minecraft",
+      "Java"
     ],
     "links": [
       {
@@ -27,7 +28,8 @@
     "tech": [
       "Qwik",
       "TypeScript",
-      "Minecraft"
+      "Minecraft",
+      "Java"
     ],
     "links": [
       {
@@ -47,8 +49,7 @@
     "description": "A silly little moon themed bot. Interactions, Utilities, Fun!",
     "imageComponentKey": "Lumin",
     "tech": [
-      "Qwik",
-      "TypeScript"
+      "Qwik"
     ],
     "links": [
       {
@@ -60,11 +61,6 @@
         "name": "Github",
         "url": "https://github.com/bwmp/lumin",
         "icon": "github"
-      },
-      {
-        "name": "Discord",
-        "url": "https://discord.gg/lumin",
-        "icon": "discord"
       }
     ]
   },
@@ -73,8 +69,7 @@
     "description": "A private/application only file sharing website I made using 80% ai just to see how far i could get it to go! All files are saved to an s3 bucket, it supports multiple domains, and has discord oauth for login.",
     "imageComponentKey": "TwinkForSale",
     "tech": [
-      "Qwik",
-      "TypeScript"
+      "Qwik"
     ],
     "links": [
       {

@@ -102,11 +102,30 @@ export const Timeline = component$<TimelineProps>(({ onSelect$ }) => {
       <div class="mb-4 flex items-center justify-between">
         <button
           type="button"
-          class="rounded-lum border border-gray-700/50 bg-gray-800/60 px-3 py-2 text-xs font-medium text-gray-200 transition hover:border-gray-600/60 hover:bg-gray-800/80 focus:ring-2 focus:ring-blue-500/40 focus:outline-none"
+          class="group relative overflow-hidden rounded-lum-2 border border-blue-500/40 bg-gradient-to-r from-blue-600/20 to-blue-500/20 px-4 py-2.5 text-sm font-semibold text-blue-100 shadow-lg shadow-blue-500/10 transition-all hover:border-blue-400/60 hover:from-blue-600/30 hover:to-blue-500/30 hover:shadow-blue-500/20 focus:ring-2 focus:ring-blue-500/60 focus:outline-none active:scale-[0.98]"
           aria-expanded={!collapsedAll.value}
           onClick$={() => (collapsedAll.value = !collapsedAll.value)}
         >
-          {collapsedAll.value ? 'Show timeline' : 'Hide timeline'}
+          <span class="relative z-10 flex items-center gap-2">
+            <svg
+              class="h-4 w-4 transition-transform duration-300"
+              style={{
+                transform: collapsedAll.value ? 'rotate(0deg)' : 'rotate(180deg)',
+              }}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+            {collapsedAll.value ? 'Show timeline' : 'Hide timeline'}
+          </span>
+          <div class="absolute inset-0 -z-10 bg-gradient-to-r from-blue-600/0 via-blue-500/30 to-blue-600/0 opacity-0 transition-opacity group-hover:opacity-100" />
         </button>
       </div>
       <div

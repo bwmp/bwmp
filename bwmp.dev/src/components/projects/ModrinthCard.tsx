@@ -57,13 +57,13 @@ export default component$<ModrinthCardProps>(({ project }) => {
           </h3>
 
           <div class="mb-3 flex items-center justify-center gap-4 text-xs text-gray-400 sm:mb-4 sm:text-sm">
-            <div class="flex items-center gap-2">
+            <div class="flex flex-col items-center gap-2">
               <Download class="h-3 w-3 sm:h-4 sm:w-4" />
-              <span>{formatNumber(project.downloads)} downloads</span>
+              <span class="whitespace-nowrap">{formatNumber(project.downloads)} downloads</span>
             </div>
-            <div class="flex items-center gap-2">
+            <div class="flex flex-col items-center gap-2">
               <Heart class="h-3 w-3 sm:h-4 sm:w-4" />
-              <span>{formatNumber(project.followers)} follows</span>
+              <span class="whitespace-nowrap">{formatNumber(project.followers)} follows</span>
             </div>
           </div>
 

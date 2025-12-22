@@ -1,15 +1,14 @@
 import { component$ } from '@builder.io/qwik';
-import { routeLoader$, type DocumentHead } from '@builder.io/qwik-city';
+import { routeLoader$, type DocumentHead, Link } from '@builder.io/qwik-city';
 import { LogoDiscord } from '@luminescent/ui-qwik';
 import { Github, Mail, ChevronDown } from 'lucide-icons-qwik';
 // @ts-ignore
 import { SiModrinth } from 'simple-icons-qwik';
 import UniversalCarousel from '~/components/projects/UniversalCarousel';
-import { type ModrinthProject } from '~/components/projects/ModrinthCard';
 import LanyardActivities from '~/components/discord/LanyardActivities';
 import DiscordStatus from '~/components/discord/DiscordStatus';
 import { useLanyardStatus } from '~/components/discord/useLanyardStatus';
-// import GitHubStats from '~/components/github/GitHubStats';
+import GitHubStats from '~/components/github/GitHubStats';
 import TechShowcase from '~/components/skills/TechShowcase';
 import { Timeline } from '~/components/projects/Timeline';
 import { getLanyardData, type LanyardData } from '~/lib/discord';
@@ -44,32 +43,8 @@ export const useDiscordUser = routeLoader$<{
   }
 });
 
-export const useModrinth = routeLoader$<ModrinthProject[]>(async () => {
-  try {
-    const url = 'https://api.modrinth.com/v2/user/bwmp/projects';
-    const res = await fetch(url);
-    if (!res.ok) return [];
-    const data = (await res.json()) as any[];
-
-    return data.map((project) => ({
-      id: project.id,
-      slug: project.slug,
-      title: project.title,
-      description: project.description,
-      downloads: project.downloads,
-      followers: project.followers,
-      categories: project.categories || [],
-      loaders: project.loaders || [],
-      icon_url: project.icon_url,
-    }));
-  } catch {
-    return [];
-  }
-});
-
 export default component$(() => {
   const discordUserData = useDiscordUser();
-  const modrinthProjects = useModrinth();
 
   const discordStatus = useLanyardStatus(
     discordUserData.value?.user?.id || '798738506859282482',
@@ -196,13 +171,13 @@ export default component$(() => {
 
         <button
           onClick$={() => {
-            const targetId = 'projects';
+            const targetId = 'about';
             document.getElementById(targetId)?.scrollIntoView({
               behavior: 'smooth',
             });
           }}
           class="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-gray-400 transition-colors duration-200 hover:text-gray-200"
-          aria-label="Scroll down to technologies"
+          aria-label="Scroll down to about section"
         >
           <span class="text-sm font-medium">Scroll Down</span>
           <div class="animate-bounce">
@@ -212,7 +187,61 @@ export default component$(() => {
       </section>
 
       <div class="mx-auto max-w-7xl px-4 py-10">
-        {/* <section
+        <section id="about" aria-labelledby="about-title" class="mb-16 scroll-mt-20">
+          <h2
+            id="about-title"
+            class="mb-6 text-2xl font-bold text-gray-100 sm:text-3xl"
+          >
+            About Me
+          </h2>
+          <div class="grid gap-8 lg:grid-cols-2 lg:gap-12">
+            <div class="space-y-4">
+              <p class="text-base leading-relaxed text-gray-300 sm:text-lg">
+                I'm a self-taught full-stack developer who loves building useful and sometimes random projects.
+                My journey started with curiosity and has grown into a passion for creating solutions that make a difference.
+              </p>
+              <p class="text-base leading-relaxed text-gray-300 sm:text-lg">
+                I believe in learning by doing - most of my skills come from jumping into projects and figuring things out along the way.
+                This approach has made me adaptable and quick to pick up new technologies when needed.
+              </p>
+              <p class="text-base leading-relaxed text-gray-300 sm:text-lg">
+                When I'm not coding, you'll probably find me working on Minecraft-related projects, playing games, or working on random side projects that catch my interest.
+              </p>
+            </div>
+            <div class="space-y-6">
+              <div>
+                <h3 class="mb-3 text-lg font-semibold text-gray-200">What I Do</h3>
+                <ul class="space-y-2 text-gray-300">
+                  <li class="flex items-center gap-2">
+                    <div class="h-2 w-2 rounded-full bg-blue-400"></div>
+                    Full-stack web development
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <div class="h-2 w-2 rounded-full bg-purple-400"></div>
+                    Minecraft server & plugin development
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <div class="h-2 w-2 rounded-full bg-green-400"></div>
+                    Bot development & Discord integrations
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <div class="h-2 w-2 rounded-full bg-orange-400"></div>
+                    Open source contributions
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="mb-3 text-lg font-semibold text-gray-200">Currently Working On</h3>
+                <ul class="space-y-2 text-gray-300">
+                  <li>Lumin - Discord bot with utilities and fun features</li>
+                  <li>Mineplace - 3D collaborative art platform</li>
+                  <li>Birdflop - Nonprofit Minecraft hosting</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section
           id="github-stats"
           aria-labelledby="github-stats-title"
           class="mb-16"
@@ -224,7 +253,7 @@ export default component$(() => {
             GitHub Activity
           </h2>
           <GitHubStats />
-        </section> */}
+        </section>
 
         <section id="timeline" aria-labelledby="timeline-title" class="mb-16">
           <h2
@@ -267,20 +296,46 @@ export default component$(() => {
           <TechShowcase />
         </section>
 
-        {modrinthProjects.value && modrinthProjects.value.length > 0 && (
-          <section
-            id="modrinth-projects"
-            aria-labelledby="modrinth-projects-title"
-          >
-            <h2
-              id="modrinth-projects-title"
-              class="mb-6 text-2xl font-bold text-gray-100 sm:text-3xl"
+        <section class="mb-16">
+          <h2 class="mb-8 text-center text-2xl font-bold text-gray-100 sm:text-3xl">
+            Want to Learn More?
+          </h2>
+          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <Link
+              href="/projects"
+              class="group rounded-lg border border-gray-700/50 bg-gray-800/50 p-6 transition-all duration-200 hover:border-gray-600/50 hover:bg-gray-700/50"
             >
-              Modrinth Projects
-            </h2>
-            <UniversalCarousel items={modrinthProjects.value} type="modrinth" />
-          </section>
-        )}
+              <h3 class="mb-3 text-xl font-semibold text-gray-100 group-hover:text-white">
+                View All Projects →
+              </h3>
+              <p class="text-gray-400 group-hover:text-gray-300">
+                Explore my complete portfolio including detailed project descriptions, tech stacks, and live demos.
+              </p>
+            </Link>
+            <Link
+              href="/skills"
+              class="group rounded-lg border border-gray-700/50 bg-gray-800/50 p-6 transition-all duration-200 hover:border-gray-600/50 hover:bg-gray-700/50"
+            >
+              <h3 class="mb-3 text-xl font-semibold text-gray-100 group-hover:text-white">
+                Skills & Expertise →
+              </h3>
+              <p class="text-gray-400 group-hover:text-gray-300">
+                Deep dive into my technical skills, expertise areas, and the technologies I work with daily.
+              </p>
+            </Link>
+            <Link
+              href="/timeline"
+              class="group rounded-lg border border-gray-700/50 bg-gray-800/50 p-6 transition-all duration-200 hover:border-gray-600/50 hover:bg-gray-700/50"
+            >
+              <h3 class="mb-3 text-xl font-semibold text-gray-100 group-hover:text-white">
+                My Journey →
+              </h3>
+              <p class="text-gray-400 group-hover:text-gray-300">
+                Follow my development journey with a detailed timeline of projects, roles, and milestones.
+              </p>
+            </Link>
+          </div>
+        </section>
       </div>
     </div>
   );

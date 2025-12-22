@@ -30,6 +30,41 @@ export default component$(() => {
         bwmp
       </Link>
 
+      <div q:slot="center" class="hidden gap-4 md:flex">
+        <button
+          onClick$={() => {
+            if (window.location.pathname === '/') {
+              document.getElementById('about')?.scrollIntoView({
+                behavior: 'smooth',
+              });
+            } else {
+              window.location.href = '/#about';
+            }
+          }}
+          class="lum-btn lum-bg-transparent hover:lum-bg-gray-700/50 rounded-lum-2 px-3 py-2 text-sm font-medium transition-all"
+        >
+          About
+        </button>
+        <Link
+          href="/projects"
+          class="lum-btn lum-bg-transparent hover:lum-bg-gray-700/50 rounded-lum-2 px-3 py-2 text-sm font-medium transition-all"
+        >
+          Projects
+        </Link>
+        <Link
+          href="/skills"
+          class="lum-btn lum-bg-transparent hover:lum-bg-gray-700/50 rounded-lum-2 px-3 py-2 text-sm font-medium transition-all"
+        >
+          Skills
+        </Link>
+        <Link
+          href="/timeline"
+          class="lum-btn lum-bg-transparent hover:lum-bg-gray-700/50 rounded-lum-2 px-3 py-2 text-sm font-medium transition-all"
+        >
+          Timeline
+        </Link>
+      </div>
+
       <div q:slot="end" class="hidden gap-2 sm:flex">
         <SocialButtons />
       </div>
