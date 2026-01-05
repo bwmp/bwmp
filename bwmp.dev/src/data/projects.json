@@ -2,7 +2,7 @@
   {
     "title": "Mineplace",
     "description": "Mineplace is a 3d reimagination of the popular reddit community, r/place. It allows users to place pixels on a large canvas in a 3D space, creating a collaborative art piece.",
-    "imageUrl": "/mineplace.svg",
+    "imageUrl": "/icons/mineplace.svg",
     "tech": [
       "Qwik",
       "Minecraft",

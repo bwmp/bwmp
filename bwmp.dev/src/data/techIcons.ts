@@ -1,13 +1,14 @@
 export type TechIconKey = string;
 
 export const techIconSrc: Record<TechIconKey, string> = {
-  Qwik: '/qwik.svg',
-  Minecraft: '/minecraft.avif',
-  TypeScript: '/typescript.svg',
-  Python: '/python.svg',
-  Vue: '/vue.svg',
-  Tailwind: '/tailwindcss.svg',
-  'Node.js': '/nodejs.svg',
+  Qwik: '/icons/qwik.svg',
+  Minecraft: '/icons/minecraft.avif',
+  TypeScript: '/icons/typescript.svg',
+  Python: '/icons/python.svg',
+  Vue: '/icons/vue.svg',
+  Tailwind: '/icons/tailwindcss.svg',
+  'Node.js': '/icons/nodejs.svg',
+  Blazor: '/icons/blazor.svg',
 };
 
 const techIconSrcLower: Record<string, string> = Object.keys(techIconSrc).reduce(

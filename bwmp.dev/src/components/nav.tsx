@@ -63,6 +63,12 @@ export default component$(() => {
         >
           Timeline
         </Link>
+        <Link
+          href="/twitter"
+          class="lum-btn lum-bg-transparent hover:lum-bg-gray-700/50 rounded-lum-2 px-3 py-2 text-sm font-medium transition-all"
+        >
+          Twitter
+        </Link>
       </div>
 
       <div q:slot="end" class="hidden gap-2 sm:flex">

@@ -1,6 +1,7 @@
 import { component$ } from '@builder.io/qwik';
 import { type DocumentHead } from '@builder.io/qwik-city';
 import TechShowcase from '~/components/skills/TechShowcase';
+import ExperienceLevels from '~/components/skills/ExperienceLevels';
 
 export default component$(() => {
   return (
@@ -71,36 +72,7 @@ export default component$(() => {
         <h2 class="mb-6 text-2xl font-bold text-gray-100 sm:text-3xl">
           Experience Levels
         </h2>
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <div class="text-center">
-            <div class="mb-3 rounded-full bg-green-500/20 p-4 text-green-400">
-              <div class="text-2xl font-bold">Expert</div>
-            </div>
-            <h4 class="mb-2 font-semibold text-gray-200">5+ Years</h4>
-            <p class="text-sm text-gray-400">JavaScript, HTML/CSS, Minecraft Development</p>
-          </div>
-          <div class="text-center">
-            <div class="mb-3 rounded-full bg-blue-500/20 p-4 text-blue-400">
-              <div class="text-2xl font-bold">Advanced</div>
-            </div>
-            <h4 class="mb-2 font-semibold text-gray-200">3+ Years</h4>
-            <p class="text-sm text-gray-400">TypeScript, Qwik, Vue, Node.js</p>
-          </div>
-          <div class="text-center">
-            <div class="mb-3 rounded-full bg-yellow-500/20 p-4 text-yellow-400">
-              <div class="text-2xl font-bold">Intermediate</div>
-            </div>
-            <h4 class="mb-2 font-semibold text-gray-200">2+ Years</h4>
-            <p class="text-sm text-gray-400">Python, C#, Docker</p>
-          </div>
-          <div class="text-center">
-            <div class="mb-3 rounded-full bg-orange-500/20 p-4 text-orange-400">
-              <div class="text-2xl font-bold">Learning</div>
-            </div>
-            <h4 class="mb-2 font-semibold text-gray-200">Active</h4>
-            <p class="text-sm text-gray-400">Rust, Go, Machine Learning</p>
-          </div>
-        </div>
+        <ExperienceLevels />
       </section>
     </div>
   );
