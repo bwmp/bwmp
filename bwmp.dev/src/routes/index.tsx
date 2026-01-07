@@ -130,6 +130,8 @@ export default component$(() => {
                         href="/discord"
                         class="lum-btn rounded-lum lum-bg-gray-800/60 hover:lum-bg-gray-700/80 border border-gray-600/50 px-4 py-3 text-gray-100 transition-all duration-200 hover:scale-105 hover:border-gray-500/50"
                         aria-label="Contact via Discord"
+                        data-umami-event="link-visit"
+                        data-umami-event-variant="discord"
                         target='_blank'
                       >
                         <LogoDiscord class="h-5 w-5" />
@@ -138,22 +140,50 @@ export default component$(() => {
                         href="https://github.com/bwmp"
                         class="lum-btn rounded-lum lum-bg-gray-800/60 hover:lum-bg-gray-700/80 border border-gray-600/50 px-4 py-3 text-gray-100 transition-all duration-200 hover:scale-105 hover:border-gray-500/50"
                         aria-label="Check out my GitHub"
+                        data-umami-event="link-visit"
+                        data-umami-event-variant="github"
                         target='_blank'
                       >
                         <Github class="h-5 w-5" />
                       </a>
                       <a
-                        href="https://x.com/buwump"
+                        href="https://throne.com/bwmp"
                         class="lum-btn rounded-lum lum-bg-gray-800/60 hover:lum-bg-gray-700/80 border border-gray-600/50 px-4 py-3 text-gray-100 transition-all duration-200 hover:scale-105 hover:border-gray-500/50"
-                        aria-label="Check out my GitHub"
+                        aria-label="Check out my Throne"
+                        data-umami-event="link-visit"
+                        data-umami-event-variant="throne"
                         target='_blank'
                       >
-                        <Github class="h-5 w-5" />
+                        <img
+                          // eslint-disable-next-line qwik/jsx-img
+                          src='/public/icons/throne.svg'
+                          class="h-5 w-5 object-contain"
+                          width="20"
+                          height="20"
+                        />
+                      </a>
+                      <a
+                        href="https://x.com/buwump"
+                        class="lum-btn rounded-lum lum-bg-gray-800/60 hover:lum-bg-gray-700/80 border border-gray-600/50 px-4 py-3 text-gray-100 transition-all duration-200 hover:scale-105 hover:border-gray-500/50"
+                        aria-label="Check out my Twitter"
+                        data-umami-event="link-visit"
+                        data-umami-event-variant="twitter"
+                        target='_blank'
+                      >
+                        <img
+                          // eslint-disable-next-line qwik/jsx-img
+                          src='/public/icons/logo.svg'
+                          class="h-5 w-5 object-contain"
+                          width="20"
+                          height="20"
+                        />
                       </a>
                       <a
                         href="https://modrinth.com/user/bwmp"
                         class="lum-btn rounded-lum lum-bg-gray-800/60 hover:lum-bg-gray-700/80 border border-gray-600/50 px-4 py-3 text-gray-100 transition-all duration-200 hover:scale-105 hover:border-gray-500/50"
                         aria-label="Check out my modrinth"
+                        data-umami-event="link-visit"
+                        data-umami-event-variant="modrinth"
                         target='_blank'
                       >
                         <SiModrinth class="h-5 w-5" />
@@ -162,12 +192,17 @@ export default component$(() => {
                         href="mailto:contact@bwmp.dev"
                         class="lum-btn rounded-lum lum-bg-gray-800/60 hover:lum-bg-gray-700/80 border border-gray-600/50 px-4 py-3 text-gray-100 transition-all duration-200 hover:scale-105 hover:border-gray-500/50"
                         aria-label="Contact via email"
+                        data-umami-event="link-visit"
+                        data-umami-event-variant="email"
                         target='_blank'
                       >
                         <Mail class="h-5 w-5" />
                       </a>
                     </div>
                   </div>
+                </div>
+                <div class="min-w-full">
+                  <iframe class="min-w-full" src='https://throne.com/featured-item-overlay/gV2GeCMMEiNkqPvcgdG7miFORCE2' />
                 </div>
                 {discordUserData.value?.user && (
                   <div class="pt-8">
