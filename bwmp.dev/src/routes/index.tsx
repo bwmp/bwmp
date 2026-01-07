@@ -156,7 +156,7 @@ export default component$(() => {
                       >
                         <img
                           // eslint-disable-next-line qwik/jsx-img
-                          src='/public/icons/throne.svg'
+                          src='/icons/throne.svg'
                           class="h-5 w-5 object-contain"
                           width="20"
                           height="20"
@@ -172,7 +172,7 @@ export default component$(() => {
                       >
                         <img
                           // eslint-disable-next-line qwik/jsx-img
-                          src='/public/icons/logo.svg'
+                          src='/icons/logo.svg'
                           class="h-5 w-5 object-contain"
                           width="20"
                           height="20"
@@ -201,9 +201,9 @@ export default component$(() => {
                     </div>
                   </div>
                 </div>
-                <div class="min-w-full">
+                <a class="min-w-full" href="https://throne.com/bwmp/item/2c5117c5-714d-49f0-9fbf-47005048257c" target="_blank" rel="noopener noreferrer">
                   <iframe class="min-w-full" src='https://throne.com/featured-item-overlay/gV2GeCMMEiNkqPvcgdG7miFORCE2' />
-                </div>
+                </a>
                 {discordUserData.value?.user && (
                   <div class="pt-8">
                     <LanyardActivities
