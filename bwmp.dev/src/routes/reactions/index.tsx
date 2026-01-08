@@ -36,8 +36,8 @@ interface WebSocketResponse {
 }
 
 const EMOJIS = ['❤️', '🤩', '😭', '😡', '🥺', '👍', '👎', '🙏', '💫', '🔥', '💯', '🎈', '⚡'];
-const WS_URL = 'ws://localhost:5000/ws';
-// const WS_URL = 'wss://api.bwmp.dev/ws';
+// const WS_URL = 'ws://localhost:5000/ws';
+const WS_URL = 'wss://api.bwmp.dev/ws';
 
 // Configuration for performance tuning
 const CONFIG = {
