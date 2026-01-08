@@ -27,7 +27,7 @@ interface WebSocketResponse {
     connectionId?: string;
     message?: string;
     count?: number;
-    emojis?: Array<{ emoji: string }>;
+    emojis?: Array<{ emoji: string, username: string, timestamp: string }>;
   };
   error?: {
     code: string;
@@ -36,8 +36,8 @@ interface WebSocketResponse {
 }
 
 const EMOJIS = ['❤️', '🤩', '😭', '😡', '🥺', '👍', '👎', '🙏', '💫', '🔥', '💯', '🎈', '⚡'];
-// const WS_URL = 'ws://localhost:5000/ws';
-const WS_URL = 'wss://api.bwmp.dev/ws';
+const WS_URL = 'ws://localhost:5000/ws';
+// const WS_URL = 'wss://api.bwmp.dev/ws';
 
 // Configuration for performance tuning
 const CONFIG = {
@@ -61,6 +61,7 @@ export default component$(() => {
   const userCount = useSignal(0);
   const canvasRef = useSignal<HTMLCanvasElement>();
   const activeCount = useSignal(0);
+  const randomUsername = useSignal(`User${Math.floor(Math.random() * 10000)}`);
 
   // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(({ cleanup }) => {
@@ -253,7 +254,6 @@ export default component$(() => {
     animationId = requestAnimationFrame(animate);
 
     // WebSocket connection
-    const randomUsername = `User${Math.floor(Math.random() * 10000)}`;
     let reconnectAttempts = 0;
     let reconnectTimeout: number | null = null;
     let ws: WebSocket | null = null;
@@ -276,7 +276,7 @@ export default component$(() => {
           ws?.close();
           return;
         }
-        ws?.send(JSON.stringify({ action: 'identify', payload: { username: randomUsername } }));
+        ws?.send(JSON.stringify({ action: 'identify', payload: { username: randomUsername.value } }));
         connectionStatus.value = 'connected';
         reconnectAttempts = 0;
       };
@@ -296,7 +296,7 @@ export default component$(() => {
             break;
           case 'emojiBatch':
             response.data?.emojis?.forEach((item) => {
-              if (item.emoji) queueEmoji(item.emoji);
+              if (item.emoji && item.username != randomUsername.value) queueEmoji(item.emoji);
             });
             break;
           case 'userCountUpdate':
@@ -349,7 +349,7 @@ export default component$(() => {
       return;
     }
     try {
-      ws.send(JSON.stringify({ action: 'sendEmoji', payload: { emoji, username: 'user' } }));
+      ws.send(JSON.stringify({ action: 'sendEmoji', payload: { emoji, username: randomUsername.value } }));
       errorMessage.value = '';
     } catch {
       errorMessage.value = 'Failed to send emoji';

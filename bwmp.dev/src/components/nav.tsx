@@ -84,6 +84,12 @@ export default component$(() => {
         >
           Twitter
         </Link>
+        <Link
+          href="/reactions"
+          class="lum-btn lum-bg-transparent hover:lum-bg-gray-700/50 rounded-lum-2 px-3 py-2 text-sm font-medium transition-all"
+        >
+          Pure Chaos
+        </Link>
       </div>
 
       <div q:slot="end" class="hidden gap-2 sm:flex">
@@ -124,6 +130,12 @@ export default component$(() => {
               class="lum-btn lum-bg-transparent hover:lum-bg-gray-700/50 rounded-lum-2 px-3 py-2 text-sm font-medium transition-all"
             >
               Twitter
+            </Link>
+            <Link
+              href="/reactions"
+              class="lum-btn lum-bg-transparent hover:lum-bg-gray-700/50 rounded-lum-2 px-3 py-2 text-sm font-medium transition-all"
+            >
+              Pure Chaos
             </Link>
           </div>
           <SocialButtons />
