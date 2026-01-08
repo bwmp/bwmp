@@ -201,9 +201,6 @@ export default component$(() => {
                     </div>
                   </div>
                 </div>
-                <a class="min-w-full" href="https://throne.com/bwmp/item/2c5117c5-714d-49f0-9fbf-47005048257c" target="_blank" rel="noopener noreferrer">
-                  <iframe class="min-w-full" src='https://throne.com/featured-item-overlay/gV2GeCMMEiNkqPvcgdG7miFORCE2' />
-                </a>
                 {discordUserData.value?.user && (
                   <div class="pt-8">
                     <LanyardActivities
