@@ -109,5 +109,26 @@
         "icon": "discord"
       }
     ]
+  },
+  {
+    "title": "Vtuber Nook",
+    "description": "A website to browse curated free assets including overlays, PNGtuber models, emotes, and more. Search by category and submit your own finds to help the community.",
+    "imageComponentKey": "VtuberNook",
+    "tech": [
+      "Qwik",
+      "TypeScript"
+    ],
+    "links": [
+      {
+        "name": "Visit Website",
+        "url": "https://vtuber-nook.com",
+        "icon": "website"
+      },
+      {
+        "name": "Twitter",
+        "url": "https://x.com/vtubernook",
+        "icon": "twitter"
+      }
+    ]
   }
 ]

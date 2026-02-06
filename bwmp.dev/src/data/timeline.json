@@ -36,6 +36,15 @@
     "tech": ["Qwik", "Minecraft"]
   },
   {
+    "id": "vtuber-nook",
+    "project": "Vtuber Nook",
+    "description": "A website to browse curated free assets including overlays, PNGtuber models, emotes, and more. Search by category and submit your own finds to help the community.",
+    "start": "2026-02-01",
+    "end": null,
+    "role": "Developer, Support",
+    "tech": ["Qwik", "TypeScript"]
+  },
+  {
     "id": "lumin",
     "project": "Lumin",
     "description": "A silly little moon themed bot. Interactions, Utilities, Fun!",
