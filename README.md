@@ -24,11 +24,11 @@
  <!--START_SECTION:waka-->
 
 ```txt
-TypeScript           16 hrs 42 mins  █████▓░░░░░░░░░░░░░░░░░░░   22.10 %
-Blade Template       10 hrs 5 mins   ███▒░░░░░░░░░░░░░░░░░░░░░   13.35 %
-C#                   8 hrs 34 mins   ███░░░░░░░░░░░░░░░░░░░░░░   11.35 %
-XML                  7 hrs           ██▒░░░░░░░░░░░░░░░░░░░░░░   09.26 %
-Razor                6 hrs 44 mins   ██▒░░░░░░░░░░░░░░░░░░░░░░   08.92 %
+TypeScript           24 hrs 9 mins   ███████▒░░░░░░░░░░░░░░░░░   29.24 %
+Blade Template       10 hrs 7 mins   ███░░░░░░░░░░░░░░░░░░░░░░   12.26 %
+Razor                7 hrs 43 mins   ██▒░░░░░░░░░░░░░░░░░░░░░░   09.35 %
+YAML                 6 hrs 39 mins   ██░░░░░░░░░░░░░░░░░░░░░░░   08.05 %
+Python               5 hrs 38 mins   █▓░░░░░░░░░░░░░░░░░░░░░░░   06.83 %
 ```
 
 <!--END_SECTION:waka-->
