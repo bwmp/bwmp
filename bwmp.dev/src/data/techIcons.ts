@@ -9,6 +9,11 @@ export const techIconSrc: Record<TechIconKey, string> = {
   Tailwind: '/icons/tailwindcss.svg',
   'Node.js': '/icons/nodejs.svg',
   Blazor: '/icons/blazor.svg',
+  Docker: '/icons/docker.svg',
+  Cloudflare: '/icons/cloudflare.svg',
+  Grafana: '/icons/grafana.svg',
+  Github: '/icons/github.svg',
+  Go: '/icons/go.svg',
 };
 
 const techIconSrcLower: Record<string, string> = Object.keys(techIconSrc).reduce(

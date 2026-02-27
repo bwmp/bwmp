@@ -46,6 +46,7 @@ export const skills: Skill[] = [
   },
   {
     name: 'GoLang',
+    iconSrc: getTechIcon('Go'),
     category: 'backend',
     color: 'from-cyan-500 to-blue-600',
   },
@@ -74,22 +75,19 @@ export const skills: Skill[] = [
   },
   {
     name: 'Docker',
+    iconSrc: getTechIcon('Docker'),
     category: 'tools',
     color: 'from-blue-400 to-blue-600',
   },
   {
-    name: 'Git',
-    iconSrc: getTechIcon('Git'),
-    category: 'tools',
-    color: 'from-orange-400 to-orange-600',
-  },
-  {
     name: 'Cloudflare',
+    iconSrc: getTechIcon('Cloudflare'),
     category: 'tools',
     color: 'from-gray-500 to-gray-700',
   },
   {
     name: 'Grafana',
+    iconSrc: getTechIcon('Grafana'),
     category: 'tools',
     color: 'from-orange-400 to-red-500',
   },
@@ -102,6 +100,12 @@ export const skills: Skill[] = [
     name: 'Loki',
     category: 'tools',
     color: 'from-blue-400 to-blue-600',
+  },
+  {
+    name: 'Git',
+    iconSrc: getTechIcon('Git'),
+    category: 'tools',
+    color: 'from-orange-400 to-orange-600',
   },
 ];
 
