@@ -6,7 +6,6 @@ export interface Skill {
   name: string;
   icon?: any;
   iconSrc?: string;
-  level: 'expert' | 'advanced' | 'intermediate' | 'learning';
   category: 'frontend' | 'backend' | 'languages' | 'tools';
   color?: string;
   iconClasses?: string;
@@ -17,28 +16,24 @@ export const skills: Skill[] = [
   {
     name: 'Qwik',
     iconSrc: getTechIcon('Qwik'),
-    level: 'intermediate',
     category: 'frontend',
     color: 'from-blue-400 to-cyan-400',
   },
   {
     name: 'Vue.js',
     iconSrc: getTechIcon('Vue'),
-    level: 'learning',
     category: 'frontend',
     color: 'from-green-400 to-emerald-500',
   },
   {
     name: 'TailwindCSS',
     iconSrc: getTechIcon('Tailwind'),
-    level: 'advanced',
     category: 'frontend',
     color: 'from-teal-400 to-cyan-500',
   },
   {
     name: 'Blazor/Mudblazor',
     iconSrc: getTechIcon('Blazor'),
-    level: 'learning',
     category: 'frontend',
     color: 'from-blue-600 to-indigo-600',
   },
@@ -46,39 +41,65 @@ export const skills: Skill[] = [
   {
     name: 'Node.js',
     iconSrc: getTechIcon('Node.js'),
-    level: 'expert',
     category: 'backend',
     color: 'from-green-500 to-green-600',
   },
   {
+    name: 'GoLang',
+    category: 'backend',
+    color: 'from-cyan-500 to-blue-600',
+  },
+  // Languages
+  {
     name: 'TypeScript',
     iconSrc: getTechIcon('TypeScript'),
-    level: 'advanced',
     category: 'languages',
     color: 'from-blue-500 to-blue-600',
   },
   {
     name: 'Python',
     iconSrc: getTechIcon('Python'),
-    level: 'intermediate',
     category: 'languages',
     color: 'from-yellow-400 to-blue-500',
   },
   {
     name: 'C#',
-    level: 'learning',
     category: 'languages',
     color: 'from-purple-500 to-purple-600',
   },
   {
     name: 'Java',
-    level: 'learning',
     category: 'languages',
     color: 'from-red-500 to-orange-500',
   },
   {
     name: 'Docker',
-    level: 'intermediate',
+    category: 'tools',
+    color: 'from-blue-400 to-blue-600',
+  },
+  {
+    name: 'Git',
+    iconSrc: getTechIcon('Git'),
+    category: 'tools',
+    color: 'from-orange-400 to-orange-600',
+  },
+  {
+    name: 'Cloudflare',
+    category: 'tools',
+    color: 'from-gray-500 to-gray-700',
+  },
+  {
+    name: 'Grafana',
+    category: 'tools',
+    color: 'from-orange-400 to-red-500',
+  },
+  {
+    name: 'Prometheus',
+    category: 'tools',
+    color: 'from-green-400 to-green-600',
+  },
+  {
+    name: 'Loki',
     category: 'tools',
     color: 'from-blue-400 to-blue-600',
   },
@@ -89,13 +110,6 @@ const categories = {
   backend: { name: 'Backend', color: 'text-green-400' },
   languages: { name: 'Languages', color: 'text-purple-400' },
   tools: { name: 'Tools & DevOps', color: 'text-orange-400' },
-};
-
-const levelColors = {
-  expert: 'bg-green-500/20 border-green-400/30 text-green-300',
-  advanced: 'bg-blue-500/20 border-blue-400/30 text-blue-300',
-  intermediate: 'bg-yellow-500/20 border-yellow-400/30 text-yellow-300',
-  learning: 'bg-purple-500/20 border-purple-400/30 text-purple-300',
 };
 
 export default component$(() => {
@@ -169,20 +183,6 @@ export default component$(() => {
                           {skill.name}
                         </p>
                       </div>
-
-                      <div class="flex justify-center">
-                        <span
-                          class={`rounded-full border px-2 py-1 text-xs ${levelColors[skill.level]} font-medium`}
-                        >
-                          {skill.level === 'expert'
-                            ? '●●●●'
-                            : skill.level === 'advanced'
-                              ? '●●●○'
-                              : skill.level === 'intermediate'
-                                ? '●●○○'
-                                : '●○○○'}
-                        </span>
-                      </div>
                     </div>
                   </div>
                 ))}
@@ -190,25 +190,6 @@ export default component$(() => {
             </div>
           );
         })}
-      </div>
-
-      <div class="flex flex-wrap justify-center gap-4 text-xs lg:justify-start">
-        <div class="flex items-center gap-2">
-          <div class="h-3 w-3 rounded-full border border-green-400/50 bg-green-500/30"></div>
-          <span class="text-gray-400">●●●● Expert</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <div class="h-3 w-3 rounded-full border border-blue-400/50 bg-blue-500/30"></div>
-          <span class="text-gray-400">●●●○ Advanced</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <div class="h-3 w-3 rounded-full border border-yellow-400/50 bg-yellow-500/30"></div>
-          <span class="text-gray-400">●●○○ Intermediate</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <div class="h-3 w-3 rounded-full border border-purple-400/50 bg-purple-500/30"></div>
-          <span class="text-gray-400">●○○○ Learning</span>
-        </div>
       </div>
     </div>
   );

@@ -1,7 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import { type DocumentHead } from '@builder.io/qwik-city';
 import TechShowcase from '~/components/skills/TechShowcase';
-import ExperienceLevels from '~/components/skills/ExperienceLevels';
 
 export default component$(() => {
   return (
@@ -28,51 +27,49 @@ export default component$(() => {
           Expertise Areas
         </h2>
         <div class="grid gap-8 md:grid-cols-2">
-          <div class="space-y-6">
-            <div class="rounded-lg border border-gray-700/50 bg-gray-800/50 p-6">
-              <h3 class="mb-4 text-xl font-semibold text-gray-100">Frontend Development</h3>
-              <ul class="space-y-2 text-gray-300">
-                <li>• Modern JavaScript/TypeScript frameworks (Qwik, Vue, React)</li>
-                <li>• Responsive design with Tailwind CSS</li>
-              </ul>
-            </div>
-            <div class="rounded-lg border border-gray-700/50 bg-gray-800/50 p-6">
-              <h3 class="mb-4 text-xl font-semibold text-gray-100">Backend Development</h3>
-              <ul class="space-y-2 text-gray-300">
-                <li>• RESTful API design and development</li>
-
-              </ul>
-            </div>
+          <div class="rounded-lg border border-gray-700/50 bg-gray-800/50 p-6">
+            <h3 class="mb-4 text-xl font-semibold text-gray-100">
+              Frontend Development
+            </h3>
+            <ul class="space-y-2 text-gray-300">
+              <li>
+                • Modern JavaScript/TypeScript frameworks (Qwik, Vue, React)
+              </li>
+              <li>• Responsive design with Tailwind CSS</li>
+            </ul>
           </div>
-          <div class="space-y-6">
-            <div class="rounded-lg border border-gray-700/50 bg-gray-800/50 p-6">
-              <h3 class="mb-4 text-xl font-semibold text-gray-100">Minecraft Development</h3>
-              <ul class="space-y-2 text-gray-300">
-                <li>• Plugin development (Bukkit/Spigot/Paper)</li>
-                <li>• Mod development (Fabric/Forge)</li>
-                <li>• Server management & optimization</li>
-                <li>• Custom world generation</li>
-              </ul>
-            </div>
-            <div class="rounded-lg border border-gray-700/50 bg-gray-800/50 p-6">
-              <h3 class="mb-4 text-xl font-semibold text-gray-100">DevOps & Tools</h3>
-              <ul class="space-y-2 text-gray-300">
-                <li>• Cloud platforms (Cloudflare, some others)</li>
-                <li>• Containerization (Docker)</li>
-                <li>• CI/CD pipelines</li>
-                <li>• Version control (Git)</li>
-                <li>• Monitoring & logging</li>
-              </ul>
-            </div>
+          <div class="rounded-lg border border-gray-700/50 bg-gray-800/50 p-6">
+            <h3 class="mb-4 text-xl font-semibold text-gray-100">
+              Backend Development
+            </h3>
+            <ul class="space-y-2 text-gray-300">
+              <li>• RESTful API design and development</li>
+            </ul>
+          </div>
+          <div class="rounded-lg border border-gray-700/50 bg-gray-800/50 p-6">
+            <h3 class="mb-4 text-xl font-semibold text-gray-100">
+              Minecraft Development
+            </h3>
+            <ul class="space-y-2 text-gray-300">
+              <li>• Plugin development (Bukkit/Spigot/Paper)</li>
+              <li>• Mod development (Fabric/Forge)</li>
+              <li>• Server management & optimization</li>
+              <li>• Custom world generation</li>
+            </ul>
+          </div>
+          <div class="rounded-lg border border-gray-700/50 bg-gray-800/50 p-6">
+            <h3 class="mb-4 text-xl font-semibold text-gray-100">
+              DevOps & Tools
+            </h3>
+            <ul class="space-y-2 text-gray-300">
+              <li>• Cloud platforms (Cloudflare, OVH)</li>
+              <li>• Containerization (Docker)</li>
+              <li>• CI/CD pipelines</li>
+              <li>• Version control (Git)</li>
+              <li>• Monitoring & logging (Prometheus, Grafana, Loki)</li>
+            </ul>
           </div>
         </div>
-      </section>
-
-      <section class="mb-16">
-        <h2 class="mb-6 text-2xl font-bold text-gray-100 sm:text-3xl">
-          Experience Levels
-        </h2>
-        <ExperienceLevels />
       </section>
     </div>
   );
@@ -83,7 +80,8 @@ export const head: DocumentHead = {
   meta: [
     {
       name: 'description',
-      content: 'Skills and technologies used by me, including frontend, backend, and Minecraft development expertise.',
+      content:
+        'Skills and technologies used by me, including frontend, backend, and Minecraft development expertise.',
     },
   ],
 };

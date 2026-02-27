@@ -118,10 +118,9 @@ export default component$(() => {
                       I'm a self taught full-stack developer with skills in many
                       different technologies.
                       <br class="hidden sm:block" />
-                      I kinda just fuck around and find out with a lot of what I
-                      do but it works out.
-                      <br class="hidden sm:block" />
-                      I am a quick learner when it
+                      I enjoy learning with a hands on approach, I learn best by
+                      doing and experimenting.
+                      <br class="hidden sm:block" />I am a quick learner when it
                       comes to picking up new technologies!
                     </p>
 
@@ -132,7 +131,7 @@ export default component$(() => {
                         aria-label="Contact via Discord"
                         data-umami-event="link-visit"
                         data-umami-event-variant="discord"
-                        target='_blank'
+                        target="_blank"
                       >
                         <LogoDiscord class="h-5 w-5" />
                       </a>
@@ -142,7 +141,7 @@ export default component$(() => {
                         aria-label="Check out my GitHub"
                         data-umami-event="link-visit"
                         data-umami-event-variant="github"
-                        target='_blank'
+                        target="_blank"
                       >
                         <Github class="h-5 w-5" />
                       </a>
@@ -152,11 +151,11 @@ export default component$(() => {
                         aria-label="Check out my Throne"
                         data-umami-event="link-visit"
                         data-umami-event-variant="throne"
-                        target='_blank'
+                        target="_blank"
                       >
                         <img
                           // eslint-disable-next-line qwik/jsx-img
-                          src='/icons/throne.svg'
+                          src="/icons/throne.svg"
                           class="h-5 w-5 object-contain"
                           width="20"
                           height="20"
@@ -168,11 +167,11 @@ export default component$(() => {
                         aria-label="Check out my Twitter"
                         data-umami-event="link-visit"
                         data-umami-event-variant="twitter"
-                        target='_blank'
+                        target="_blank"
                       >
                         <img
                           // eslint-disable-next-line qwik/jsx-img
-                          src='/icons/logo.svg'
+                          src="/icons/logo.svg"
                           class="h-5 w-5 object-contain"
                           width="20"
                           height="20"
@@ -184,7 +183,7 @@ export default component$(() => {
                         aria-label="Check out my modrinth"
                         data-umami-event="link-visit"
                         data-umami-event-variant="modrinth"
-                        target='_blank'
+                        target="_blank"
                       >
                         <SiModrinth class="h-5 w-5" />
                       </a>
@@ -194,7 +193,7 @@ export default component$(() => {
                         aria-label="Contact via email"
                         data-umami-event="link-visit"
                         data-umami-event-variant="email"
-                        target='_blank'
+                        target="_blank"
                       >
                         <Mail class="h-5 w-5" />
                       </a>
@@ -232,7 +231,11 @@ export default component$(() => {
       </section>
 
       <div class="mx-auto max-w-7xl px-4 py-10">
-        <section id="about" aria-labelledby="about-title" class="mb-16 scroll-mt-20">
+        <section
+          id="about"
+          aria-labelledby="about-title"
+          class="mb-16 scroll-mt-20"
+        >
           <h2
             id="about-title"
             class="mb-6 text-2xl font-bold text-gray-100 sm:text-3xl"
@@ -242,20 +245,18 @@ export default component$(() => {
           <div class="grid gap-8 lg:grid-cols-2 lg:gap-12">
             <div class="space-y-4">
               <p class="text-base leading-relaxed text-gray-300 sm:text-lg">
-                I'm a self-taught full-stack developer who loves building useful and sometimes random projects.
-                My journey started with curiosity and has grown into a passion for creating solutions that make a difference.
-              </p>
-              <p class="text-base leading-relaxed text-gray-300 sm:text-lg">
-                I believe in learning by doing - most of my skills come from jumping into projects and figuring things out along the way.
-                This approach has made me adaptable and quick to pick up new technologies when needed.
-              </p>
-              <p class="text-base leading-relaxed text-gray-300 sm:text-lg">
-                When I'm not coding, you'll probably find me working on Minecraft-related projects, playing games, or working on random side projects that catch my interest.
+                I'm a self-taught full-stack developer who likes building useful
+                projects and learning by jumping in and figuring things out as I
+                go. That hands-on approach has helped me adapt quickly to new
+                tools, and when I'm not coding I'm usually playing games, or
+                tinkering with side projects, or hanging out with friends.
               </p>
             </div>
             <div class="space-y-6">
               <div>
-                <h3 class="mb-3 text-lg font-semibold text-gray-200">What I Do</h3>
+                <h3 class="mb-3 text-lg font-semibold text-gray-200">
+                  What I Do
+                </h3>
                 <ul class="space-y-2 text-gray-300">
                   <li class="flex items-center gap-2">
                     <div class="h-2 w-2 rounded-full bg-blue-400"></div>
@@ -276,11 +277,14 @@ export default component$(() => {
                 </ul>
               </div>
               <div>
-                <h3 class="mb-3 text-lg font-semibold text-gray-200">Currently Working On</h3>
+                <h3 class="mb-3 text-lg font-semibold text-gray-200">
+                  Currently Working On
+                </h3>
                 <ul class="space-y-2 text-gray-300">
                   <li>Lumin - Discord bot with utilities and fun features</li>
                   <li>Mineplace - 3D collaborative art platform</li>
                   <li>Birdflop - Nonprofit Minecraft hosting</li>
+                  <li>PiShock - I don't really wanna explain this one</li>
                 </ul>
               </div>
             </div>
@@ -354,7 +358,8 @@ export default component$(() => {
                 View All Projects →
               </h3>
               <p class="text-gray-400 group-hover:text-gray-300">
-                Explore my complete portfolio including detailed project descriptions, tech stacks, and live demos.
+                Explore my complete portfolio including detailed project
+                descriptions, tech stacks, and live demos.
               </p>
             </Link>
             <Link
@@ -365,7 +370,8 @@ export default component$(() => {
                 Skills & Expertise →
               </h3>
               <p class="text-gray-400 group-hover:text-gray-300">
-                Deep dive into my technical skills, expertise areas, and the technologies I work with daily.
+                Deep dive into my technical skills, expertise areas, and the
+                technologies I work with daily.
               </p>
             </Link>
             <Link
@@ -376,7 +382,8 @@ export default component$(() => {
                 My Journey →
               </h3>
               <p class="text-gray-400 group-hover:text-gray-300">
-                Follow my development journey with a detailed timeline of projects, roles, and milestones.
+                Follow my development journey with a detailed timeline of
+                projects, roles, and milestones.
               </p>
             </Link>
           </div>
