@@ -45,16 +45,19 @@ function formatDuration(start: Date, end: Date | null): string {
   return parts.join(' ');
 }
 
+const monthsBetween = (a: Date, b: Date) =>
+  (b.getFullYear() - a.getFullYear()) * 12 + (b.getMonth() - a.getMonth());
+
 interface TimelineProps {
   onSelect$?: PropFunction<(id: string) => void>;
 }
 
-export const Timeline = component$<TimelineProps>(({ onSelect$ }) => {
+export const Timeline = component$<TimelineProps>(() => {
   const entriesSig = useSignal<TimelineEntry[]>([]);
   const expandedId = useSignal<string | null>(null);
   const earliestStartSig = useSignal<Date | null>(null);
   const latestEndSig = useSignal<Date | null>(null);
-  const collapsedAll = useSignal<boolean>(true);
+  const collapsedAll = useSignal<boolean>(false);
   const toggleExpand = $((id: string) => {
     expandedId.value = expandedId.value === id ? null : id;
   });
@@ -137,145 +140,153 @@ export const Timeline = component$<TimelineProps>(({ onSelect$ }) => {
         }}
         style={{ maxHeight: collapsedAll.value ? '0px' : '4000px' }}
       >
-        <ul class="space-y-6">
-          {entriesSig.value.map((item, idx) => {
+        {earliestStartSig.value && latestEndSig.value && (() => {
+          const earliest = earliestStartSig.value!;
+          const latest = latestEndSig.value!;
+          const totalSpan = Math.max(1, monthsBetween(earliest, latest));
+
+          const yearMarkers: { year: number; pct: number }[] = [];
+          for (let y = earliest.getFullYear(); y <= latest.getFullYear() + 1; y++) {
+            const d = new Date(y, 0, 1);
+            if (d >= earliest && monthsBetween(earliest, d) <= totalSpan) {
+              const pct = (monthsBetween(earliest, d) / totalSpan) * 100;
+              yearMarkers.push({ year: y, pct: Math.min(100, pct) });
+            }
+          }
+
+          return (
+            <div class="mb-4 overflow-hidden rounded-lum-2 border border-gray-700/40 bg-gray-800/30 p-3">
+              <div class="relative mb-1 ml-[84px] h-4">
+                {yearMarkers.map(({ year, pct }) => (
+                  <span
+                    key={year}
+                    class="absolute -translate-x-1/2 text-[9px] text-gray-500"
+                    style={{ left: `${pct}%` }}
+                  >
+                    {year}
+                  </span>
+                ))}
+              </div>
+              {entriesSig.value.map((item) => {
+                const ongoing = !item.endDate;
+                const startOffsetMonths = Math.max(0, monthsBetween(earliest, item.startDate));
+                const effectiveEnd = item.endDate ?? latest;
+                const durMonths = Math.max(0, monthsBetween(item.startDate, effectiveEnd));
+                const startPct = (startOffsetMonths / totalSpan) * 100;
+                let widthPct = (durMonths / totalSpan) * 100;
+                if (widthPct < 4) widthPct = 4;
+                if (startPct + widthPct > 100) widthPct = 100 - startPct;
+                return (
+                  <div key={item.id} class="flex items-center gap-2 py-[3px]">
+                    <span class="w-[80px] shrink-0 text-right text-[10px] leading-tight text-gray-400 truncate">
+                      {item.project}
+                    </span>
+                    <div class="relative h-4 flex-1">
+                      <div
+                        class={{
+                          'absolute top-1/2 h-2 -translate-y-1/2 rounded-full shadow-sm': true,
+                          'bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700': ongoing,
+                          'bg-gradient-to-r from-gray-500 to-gray-600': !ongoing,
+                        }}
+                        style={{
+                          left: `${startPct.toFixed(2)}%`,
+                          width: `${widthPct.toFixed(2)}%`,
+                        }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+              <div class="relative mt-1 ml-[84px] h-px bg-gray-700/40">
+                {yearMarkers.map(({ year, pct }) => (
+                  <div
+                    key={year}
+                    class="absolute top-0 h-2 w-px -translate-x-1/2 -translate-y-1/2 bg-gray-600/60"
+                    style={{ left: `${pct}%` }}
+                  />
+                ))}
+              </div>
+            </div>
+          );
+        })()}
+
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {entriesSig.value.map((item) => {
             const ongoing = !item.endDate;
             const expanded = expandedId.value === item.id;
-            const earliest = earliestStartSig.value;
-            const latest = latestEndSig.value;
-            let startOffsetPercent = 0;
-            let durationPercentGlobal = 1;
-            if (earliest && latest) {
-              const monthsBetween = (a: Date, b: Date) =>
-                (b.getFullYear() - a.getFullYear()) * 12 +
-                (b.getMonth() - a.getMonth());
-              const totalSpan = Math.max(1, monthsBetween(earliest, latest));
-              const startOffsetMonths = Math.max(
-                0,
-                monthsBetween(earliest, item.startDate),
-              );
-              const effectiveEnd = item.endDate ?? latest;
-              const durationMonths = Math.max(
-                0,
-                monthsBetween(item.startDate, effectiveEnd),
-              );
-              startOffsetPercent = startOffsetMonths / totalSpan;
-              durationPercentGlobal = durationMonths / totalSpan;
-              if (durationPercentGlobal < 0.04) durationPercentGlobal = 0.04;
-              if (startOffsetPercent + durationPercentGlobal > 1)
-                durationPercentGlobal = 1 - startOffsetPercent;
-            }
-            const collapsedWidth = 220;
-            const transitionSpec =
-              'margin-left 420ms cubic-bezier(.4,0,.2,1), width 420ms cubic-bezier(.4,0,.2,1), background-color 240ms ease';
-            const cardStyle = expanded
-              ? { width: '100%', marginLeft: '0', transition: transitionSpec }
-              : {
-                width: `${collapsedWidth}px`,
-                marginLeft: `clamp(0px, ${(startOffsetPercent * 100).toFixed(2)}%, calc(100% - ${collapsedWidth}px))`,
-                transition: transitionSpec,
-              };
             return (
-              <li key={item.id} class="relative pl-8 md:pl-12">
-                <div class="md:absolute md:top-1.5 md:left-0 md:flex md:w-10 md:justify-center">
-                  <button
-                    type="button"
-                    onClick$={() => onSelect$ && onSelect$(item.id)}
-                    class={{
-                      'relative z-10 rounded-full shadow-lg transition outline-none focus:ring-2 focus:ring-blue-400/60':
-                        true,
-                      'h-3 w-3 ring-2 ring-gray-800': true,
-                      'animate-pulse bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600':
-                        ongoing,
-                      'bg-gradient-to-br from-gray-500 to-gray-700': !ongoing,
-                    }}
-                    aria-label={`Select ${item.project}`}
-                  />
-                </div>
-                <div class="w-full">
-                  <div class="relative mb-2 h-3">
+              <div
+                key={item.id}
+                class={`group rounded-lum-2 cursor-pointer border bg-gray-800/40 hover:bg-gray-800/60 ${cardPadding} relative backdrop-blur-sm transition ${ongoing ? 'border-blue-700/40 hover:border-blue-600/50' : 'border-gray-700/40'}`}
+                role="button"
+                tabIndex={0}
+                aria-expanded={expanded}
+                aria-controls={`timeline-panel-${item.id}`}
+                onClick$={() => toggleExpand(item.id)}
+              >
+                <div class="space-y-2">
+                  <div class="flex flex-wrap items-start gap-1.5">
+                    <div class="flex min-w-0 flex-1 flex-wrap items-center gap-1.5">
+                      <h3 class={`font-semibold text-gray-100 ${titleSize}`}>
+                        {item.project}
+                      </h3>
+                      {item.role && (
+                        <span class="rounded-lum bg-blue-900/40 px-1.5 py-px text-[9px] font-medium text-blue-200">
+                          {item.role}
+                        </span>
+                      )}
+                    </div>
                     <div
                       class={{
-                        'absolute top-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r shadow-sm transition-all':
-                          true,
-                        'from-blue-500 via-blue-600 to-blue-700': ongoing,
-                        'from-gray-500 to-gray-700': !ongoing,
-                      }}
-                      style={{
-                        left: `${(startOffsetPercent * 100).toFixed(2)}%`,
-                        width: `${(durationPercentGlobal * 100).toFixed(2)}%`,
-                        height: '6px',
+                        'mt-0.5 h-2 w-2 shrink-0 rounded-full': true,
+                        'animate-pulse bg-blue-500': ongoing,
+                        'bg-gray-600': !ongoing,
                       }}
                     />
                   </div>
+                  <p class="text-[10px] font-medium tracking-wide text-gray-400 md:text-xs">
+                    {item.durationLabel}
+                  </p>
                   <div
-                    class={`group rounded-lum-2 cursor-pointer border border-gray-700/40 bg-gray-800/40 hover:bg-gray-800/60 ${cardPadding} relative backdrop-blur-sm transition`}
-                    role="button"
-                    tabIndex={0}
-                    aria-expanded={expanded}
-                    aria-controls={`timeline-panel-${item.id}`}
-                    onClick$={() => toggleExpand(item.id)}
-                    style={cardStyle}
+                    id={`timeline-panel-${item.id}`}
+                    class={{
+                      'space-y-3 overflow-hidden pt-1 text-gray-300': true,
+                      'max-h-[900px] opacity-100 transition-all delay-[140ms] duration-300 ease-in-out':
+                        expanded,
+                      'pointer-events-none max-h-0 opacity-0 duration-140':
+                        !expanded,
+                    }}
+                    aria-hidden={!expanded}
                   >
-                    <div class="space-y-2">
-                      <div class="flex flex-wrap items-center gap-1.5">
-                        <h3 class={`font-semibold text-gray-100 ${titleSize}`}>
-                          {item.project}
-                        </h3>
-                        {item.role && (
-                          <span class="rounded-lum bg-blue-900/40 px-1.5 py-px text-[9px] font-medium text-blue-200">
-                            {item.role}
-                          </span>
-                        )}
-                      </div>
-                      <p class="text-[10px] font-medium tracking-wide text-gray-400 md:text-xs">
-                        {item.durationLabel}
-                      </p>
-                      <div
-                        id={`timeline-panel-${item.id}`}
-                        class={{
-                          'space-y-3 overflow-hidden pt-1 text-gray-300': true,
-                          'max-h-[900px] opacity-100 transition-all delay-[140ms] duration-300 ease-in-out':
-                            expanded,
-                          'pointer-events-none max-h-0 opacity-0 duration-140':
-                            !expanded,
-                        }}
-                        aria-hidden={!expanded}
-                      >
-                        <p class="text-xs leading-relaxed text-gray-300 md:text-[13px]">
-                          {item.description}
-                        </p>
-                        <div class="flex flex-wrap items-center gap-2 text-[10px] text-gray-400 md:text-xs">
-                          <span class="rounded-lum bg-gray-700/40 px-2 py-1">
-                            Started {formatDate(item.startDate)}
-                          </span>
-                          <span class="rounded-lum bg-gray-700/30 px-2 py-1">
-                            Elapsed {formatDuration(item.startDate, null)}
-                          </span>
-                          {item.endDate && (
-                            <span class="rounded-lum bg-gray-700/30 px-2 py-1">
-                              Paused {formatDate(item.endDate)}
-                            </span>
-                          )}
-                        </div>
-                        {item.tech && item.tech.length > 0 && (
-                          <div class={`flex flex-wrap ${techGap}`}>
-                            {item.tech.map((t) => (
-                              <Tag key={t} name={t} iconSrc={techIconSrc[t]} />
-                            ))}
-                          </div>
-                        )}
-                      </div>
+                    <p class="text-xs leading-relaxed text-gray-300 md:text-[13px]">
+                      {item.description}
+                    </p>
+                    <div class="flex flex-wrap items-center gap-2 text-[10px] text-gray-400 md:text-xs">
+                      <span class="rounded-lum bg-gray-700/40 px-2 py-1">
+                        Started {formatDate(item.startDate)}
+                      </span>
+                      <span class="rounded-lum bg-gray-700/30 px-2 py-1">
+                        Elapsed {formatDuration(item.startDate, null)}
+                      </span>
+                      {item.endDate && (
+                        <span class="rounded-lum bg-gray-700/30 px-2 py-1">
+                          Paused {formatDate(item.endDate)}
+                        </span>
+                      )}
                     </div>
+                    {item.tech && item.tech.length > 0 && (
+                      <div class={`flex flex-wrap ${techGap}`}>
+                        {item.tech.map((t) => (
+                          <Tag key={t} name={t} iconSrc={techIconSrc[t]} />
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
-                {idx !== entriesSig.value.length - 1 && (
-                  <div class="md:absolute md:top-6 md:bottom-0 md:left-5 md:w-px md:bg-gradient-to-b md:from-gray-600/40 md:via-gray-700/30 md:to-gray-800/0" />
-                )}
-              </li>
+              </div>
             );
           })}
-        </ul>
+        </div>
       </div>
     </div>
   );

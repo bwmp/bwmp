@@ -6,7 +6,7 @@ export interface Skill {
   name: string;
   icon?: any;
   iconSrc?: string;
-  category: 'frontend' | 'backend' | 'languages' | 'tools';
+  category: 'frontend' | 'languages' | 'tools';
   color?: string;
   iconClasses?: string;
 }
@@ -37,20 +37,19 @@ export const skills: Skill[] = [
     category: 'frontend',
     color: 'from-blue-600 to-indigo-600',
   },
-  // Backend
+  // Languages
   {
     name: 'Node.js',
     iconSrc: getTechIcon('Node.js'),
-    category: 'backend',
+    category: 'languages',
     color: 'from-green-500 to-green-600',
   },
   {
     name: 'GoLang',
     iconSrc: getTechIcon('Go'),
-    category: 'backend',
+    category: 'languages',
     color: 'from-cyan-500 to-blue-600',
   },
-  // Languages
   {
     name: 'TypeScript',
     iconSrc: getTechIcon('TypeScript'),
@@ -111,7 +110,6 @@ export const skills: Skill[] = [
 
 const categories = {
   frontend: { name: 'Frontend', color: 'text-cyan-400' },
-  backend: { name: 'Backend', color: 'text-green-400' },
   languages: { name: 'Languages', color: 'text-purple-400' },
   tools: { name: 'Tools & DevOps', color: 'text-orange-400' },
 };

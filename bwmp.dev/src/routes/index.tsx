@@ -284,24 +284,24 @@ export default component$(() => {
                   <li>Lumin - Discord bot with utilities and fun features</li>
                   <li>Mineplace - 3D collaborative art platform</li>
                   <li>Birdflop - Nonprofit Minecraft hosting</li>
-                  <li>PiShock - I don't really wanna explain this one</li>
+                  <li>PiShock - Internet-controlled remote shock device platform with shareable access and integrations.</li>
                 </ul>
               </div>
             </div>
           </div>
         </section>
         <section
-          id="github-stats"
-          aria-labelledby="github-stats-title"
+          id="technologies"
+          aria-labelledby="technologies-title"
           class="mb-16"
         >
           <h2
-            id="github-stats-title"
+            id="technologies-title"
             class="mb-6 text-2xl font-bold text-gray-100 sm:text-3xl"
           >
-            GitHub Activity
+            Technologies & Skills
           </h2>
-          <GitHubStats />
+          <TechShowcase />
         </section>
 
         <section id="timeline" aria-labelledby="timeline-title" class="mb-16">
@@ -318,6 +318,20 @@ export default component$(() => {
           <Timeline />
         </section>
 
+        <section
+          id="github-stats"
+          aria-labelledby="github-stats-title"
+          class="mb-16"
+        >
+          <h2
+            id="github-stats-title"
+            class="mb-6 text-2xl font-bold text-gray-100 sm:text-3xl"
+          >
+            GitHub Activity
+          </h2>
+          <GitHubStats />
+        </section>
+
         <section id="projects" aria-labelledby="projects-title" class="mb-16">
           <h2
             id="projects-title"
@@ -329,20 +343,6 @@ export default component$(() => {
             items={projects.map((p) => ({ ...p, id: p.title }))}
             type="portfolio"
           />
-        </section>
-
-        <section
-          id="technologies"
-          aria-labelledby="technologies-title"
-          class="mb-16"
-        >
-          <h2
-            id="technologies-title"
-            class="mb-6 text-2xl font-bold text-gray-100 sm:text-3xl"
-          >
-            Technologies & Skills
-          </h2>
-          <TechShowcase />
         </section>
 
         <section class="mb-16">
