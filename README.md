@@ -24,11 +24,11 @@
  <!--START_SECTION:waka-->
 
 ```txt
-TypeScript        18 hrs 8 mins         ██████▒░░░░░░░░░░░░░░░░░░   25.69 %
-C#                9 hrs 38 mins         ███▒░░░░░░░░░░░░░░░░░░░░░   13.66 %
-JavaScript        6 hrs 18 mins         ██▒░░░░░░░░░░░░░░░░░░░░░░   08.94 %
-YAML              5 hrs 36 mins         ██░░░░░░░░░░░░░░░░░░░░░░░   07.95 %
-Markdown          5 hrs 5 mins          █▓░░░░░░░░░░░░░░░░░░░░░░░   07.21 %
+TypeScript        11 hrs 33 mins        ████▒░░░░░░░░░░░░░░░░░░░░   17.56 %
+C#                9 hrs 38 mins         ███▓░░░░░░░░░░░░░░░░░░░░░   14.65 %
+JavaScript        6 hrs 18 mins         ██▒░░░░░░░░░░░░░░░░░░░░░░   09.59 %
+Markdown          5 hrs 38 mins         ██░░░░░░░░░░░░░░░░░░░░░░░   08.58 %
+Vue.js            5 hrs 2 mins          ██░░░░░░░░░░░░░░░░░░░░░░░   07.66 %
 ```
 
 <!--END_SECTION:waka-->
