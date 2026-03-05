@@ -7,7 +7,7 @@ import { Github, Globe } from 'lucide-icons-qwik';
 import AetherSMPImg from '~/components/images/AetherSMP.png?jsx';
 import TwinkForSaleImg from '~/components/images/twinkforsale.png?jsx';
 import LuminImg from '~/components/images/Lumin.png?jsx';
-
+import ServersPulse from '~/components/images/serverspulse.svg?svg?jsx';
 interface ProjectLink {
   name: string;
   url: string;
@@ -48,6 +48,7 @@ export default component$<ProjectCardProps>(({ project }) => {
     AetherSMP: AetherSMPImg,
     TwinkForSale: TwinkForSaleImg,
     Lumin: LuminImg,
+    ServersPulse: ServersPulse,
     Birdflop: <LogoBirdflop size={200} class="mx-auto mb-5 w-25 h-25 md:w-50 md:h-50" fillGradient={['#54daf4', '#545eb6']} />,
   };
 

@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="110 0 256 256" width="256" height="256">
+  <defs>
+    <style>
+      .ekg-line {
+        stroke-dasharray: 100;
+        stroke-dashoffset: 100;
+        animation: ekgDrawUndraw 3.2s ease-in-out infinite;
+      }
+
+      @keyframes ekgDrawUndraw {
+        0% {
+          stroke-dashoffset: 100;
+        }
+        50% {
+          stroke-dashoffset: 0;
+        }
+        100% {
+          stroke-dashoffset: -100;
+        }
+      }
+    </style>
+    
+    <linearGradient id="ekgGrad" gradientUnits="userSpaceOnUse" x1="155" y1="0" x2="355" y2="0">
+      <stop offset="0%" stop-color="#3f53d7"/>
+      <stop offset="50%" stop-color="#7368ff"/>
+      <stop offset="100%" stop-color="#6a4fda"/>
+    </linearGradient>
+
+    <linearGradient id="pulseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7368ff"/>
+      <stop offset="100%" stop-color="#6a4fda"/>
+    </linearGradient>
+
+    <filter id="ekgGlow" x="-10%" y="-80%" width="120%" height="260%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="0 0 0 0 0.45
+                0 0 0 0 0.41
+                0 0 0 0 1
+                0 0 0 0.55 0" result="colorBlur"/>
+      <feMerge>
+        <feMergeNode in="colorBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="spikeGlow" x="-20%" y="-80%" width="140%" height="260%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4.5" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="0 0 0 0 0.45
+                0 0 0 0 0.41
+                0 0 0 0 1
+                0 0 0 0.7 0" result="colorBlur"/>
+      <feMerge>
+        <feMergeNode in="colorBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="dotGlow" x="-120%" y="-120%" width="340%" height="340%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4.5" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="0 0 0 0 0.71
+                0 0 0 0 0.54
+                0 0 0 0 0.33
+                0 0 0 0.6 0" result="colorBlur"/>
+      <feMerge>
+        <feMergeNode in="colorBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <polyline
+    class="ekg-line"
+    pathLength="100"
+    points="
+      155,90
+      196,90
+      206,76
+      214,90
+      224,90
+      242,130
+      260,90
+      270,90
+      288,70
+      298,90
+      355,90
+    "
+    fill="none"
+    stroke="url(#ekgGrad)"
+    stroke-width="4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    filter="url(#spikeGlow)"
+  />
+  <polyline
+    pathLength="100"
+    points="
+      224,90
+      242,130
+      260,90
+    "
+    fill="none"
+    stroke="url(#ekgGrad)"
+    stroke-width="4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <text x="110" y="134"
+    font-family="'Manrope', 'Segoe UI', Arial, sans-serif"
+    font-weight="700" font-size="74" fill="#e7e8f6" letter-spacing="-1">Ser</text>
+
+  <text x="262" y="134"
+    font-family="'Manrope', 'Segoe UI', Arial, sans-serif"
+    font-weight="700" font-size="74" fill="#e7e8f6" letter-spacing="-1">ers</text>
+
+  <text x="148" y="200"
+    font-family="'Manrope', 'Segoe UI', Arial, sans-serif"
+    font-weight="800" font-size="74" fill="url(#pulseGrad)" letter-spacing="-0.5">Pulse</text>
+</svg>

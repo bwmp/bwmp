@@ -1,5 +1,22 @@
 [
   {
+    "title": "ServersPulse",
+    "description": "ServersPulse gives server admins a live operations cockpit with TPS/MSPT observability, player return trends, domain attribution, and team-ready reporting in one place.",
+    "imageComponentKey": "ServersPulse",
+    "tech": [
+      "Qwik",
+      "Minecraft",
+      "Go"
+    ],
+    "links": [
+      {
+        "name": "Visit Website",
+        "url": "https://serverspulse.com",
+        "icon": "website"
+      }
+    ]
+  },
+  {
     "title": "Mineplace",
     "description": "Mineplace is a 3d reimagination of the popular reddit community, r/place. It allows users to place pixels on a large canvas in a 3D space, creating a collaborative art piece.",
     "imageUrl": "/icons/mineplace.svg",
