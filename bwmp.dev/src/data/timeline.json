@@ -52,5 +52,14 @@
     "end": null,
     "role": "Creator",
     "tech": ["TypeScript", "Qwik"]
+  },
+  {
+    "id": "mochi",
+    "project": "Mochi",
+    "description": "a privacy-focused analytics platform for Discord bots. Track command usage, guild growth, and bot health from a unified dashboard — self-hosted via Docker Compose or fully managed with Mochi Cloud",
+    "start": "2026-07-08",
+    "end": null,
+    "role": "Creator",
+    "tech": ["TypeScript", "Docker"]
   }
 ]
