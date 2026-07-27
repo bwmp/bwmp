@@ -14,6 +14,14 @@ export const techIconSrc: Record<TechIconKey, string> = {
   Grafana: '/icons/grafana.svg',
   Github: '/icons/github.svg',
   Go: '/icons/go.svg',
+  Rust: '/icons/rust.svg',
+  Tauri: '/icons/tauri.svg',
+  React: '/icons/react.svg',
+  Java: '/icons/java.svg',
+  'C#': '/icons/csharp.svg',
+  Git: '/icons/git.svg',
+  Prometheus: '/icons/prometheus.svg',
+  Loki: '/icons/loki.png',
 };
 
 const techIconSrcLower: Record<string, string> = Object.keys(techIconSrc).reduce(

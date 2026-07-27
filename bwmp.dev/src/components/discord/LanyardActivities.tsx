@@ -56,6 +56,8 @@ export type LanyardWSMessage = {
 type LanyardActivitiesProps = {
   userId: string;
   isSafari?: boolean;
+  /** Renders a single-line presence chip instead of full activity cards. */
+  compact?: boolean;
 };
 
 // Utility functions
@@ -135,7 +137,7 @@ const activityTypeIcons = {
 };
 
 export default component$<LanyardActivitiesProps>(
-  ({ userId, isSafari = false }) => {
+  ({ userId, isSafari = false, compact = false }) => {
     const activities = useSignal<Activity[]>([]);
     const now = useSignal(Date.now());
     const connected = useSignal(false);
@@ -332,6 +334,45 @@ export default component$<LanyardActivitiesProps>(
       });
     });
 
+    if (compact) {
+      const activity = activities.value.find((a) => a.type !== 4);
+      // Presence is supplementary here — stay out of the way when there's nothing to show.
+      if (error.value || !connected.value || !activity) return null;
+
+      return (
+        <div class="lum-card lum-bg-gray-800/30 !gap-0 !p-4">
+          <p class="text-xs text-gray-500">Right now</p>
+          <div class="mt-3 flex items-center gap-3">
+            {activity.assets?.large_image && (
+              <img
+                src={activity.assets.large_image}
+                alt=""
+                width={44}
+                height={44}
+                class="rounded-lum-4 h-11 w-11 shrink-0 object-cover"
+              />
+            )}
+            <div class="min-w-0">
+              <p class="truncate text-sm font-medium text-gray-100">
+                {(activityType as any)[activity.type]} {activity.name}
+              </p>
+              {activity.details && (
+                <p class="truncate text-xs text-gray-400">{activity.details}</p>
+              )}
+              {activity.state && (
+                <p class="truncate text-xs text-gray-400">{activity.state}</p>
+              )}
+              {activity.timestamps?.start && (
+                <p class="mt-0.5 text-xs text-gray-500">
+                  {convertTime(now.value - activity.timestamps.start)} elapsed
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     if (error.value) {
       return (
         <div class="flex items-center justify-center p-4 text-red-400">
@@ -387,14 +428,14 @@ export default component$<LanyardActivitiesProps>(
                         alt={activity.assets.large_text}
                         width={75}
                         height={75}
-                        class="rounded-lum-6 border-lum-border/20 border blur-md"
+                        class="rounded-lum-4 border-lum-border/20 border blur-md"
                       />
                       <img
                         src={activity.assets.large_image}
                         alt={activity.assets.large_text}
                         width={75}
                         height={75}
-                        class="rounded-lum-6 border-lum-border/20 absolute top-0 border"
+                        class="rounded-lum-4 border-lum-border/20 absolute top-0 border"
                       />
                     </>
                   )}
@@ -404,7 +445,7 @@ export default component$<LanyardActivitiesProps>(
                       alt={activity.assets.small_text}
                       width={25}
                       height={25}
-                      class="rounded-lum-6 border-lum-border/20 absolute -right-2 -bottom-2 border"
+                      class="rounded-lum-4 border-lum-border/20 absolute -right-2 -bottom-2 border"
                     />
                   )}
                 </div>
@@ -433,7 +474,7 @@ export default component$<LanyardActivitiesProps>(
                   )}
                   {activity.timestamps?.start && activity.timestamps?.end && (
                     <div class="mt-1 text-xs text-white">
-                      <div class="lum-bg-gray-950/10 rounded-lum-6 relative overflow-x-clip">
+                      <div class="lum-bg-gray-950/10 rounded-lum-4 relative overflow-x-clip">
                         <div class="flex items-center justify-between px-1.5 py-0.5">
                           <span>
                             {convertTime(now.value - activity.timestamps.start)}

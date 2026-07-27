@@ -1,5 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import { Download, Heart } from 'lucide-icons-qwik';
+
 export type ModrinthProject = {
   id: string;
   slug: string;
@@ -16,100 +17,72 @@ type ModrinthCardProps = {
   project: ModrinthProject;
 };
 
-export default component$<ModrinthCardProps>(({ project }) => {
-  const formatNumber = (num: number): string => {
-    if (num >= 1000000) {
-      return `${(num / 1000000).toFixed(1)}M`;
-    } else if (num >= 1000) {
-      return `${(num / 1000).toFixed(1)}K`;
-    }
-    return num.toString();
-  };
+function formatNumber(num: number): string {
+  if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`;
+  if (num >= 1000) return `${(num / 1000).toFixed(1)}K`;
+  return num.toString();
+}
 
-  const capitalizeFirst = (str: string): string => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  };
+function capitalizeFirst(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+export default component$<ModrinthCardProps>(({ project }) => {
+  const tags = [...project.loaders, ...project.categories].slice(0, 3);
 
   return (
     <a
       href={`https://modrinth.com/plugin/${project.slug}`}
       target="_blank"
       rel="noopener noreferrer"
-      class="lum-card lum-hoverable lum-bg-gray-800/30 relative h-full w-full"
+      class="lum-card lum-bg-gray-800/30 h-full !gap-0 !p-5 transition-colors hover:border-gray-600/60"
     >
-      <div class="flex h-full flex-col">
-        {project.icon_url && (
-          <div class="mb-3 flex items-center justify-center pt-3 sm:mb-4 sm:pt-4">
+      <div class="flex items-start gap-3">
+        <div class="rounded-lum-4 flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden bg-gray-950/40">
+          {project.icon_url && (
             <img
               src={project.icon_url}
-              alt={`${project.title} icon`}
-              width={120}
-              height={120}
-              class="h-24 w-24 rounded-lg object-cover sm:h-30 sm:w-30"
+              alt=""
+              width="48"
+              height="48"
+              class="h-full w-full object-cover"
               loading="lazy"
             />
-          </div>
-        )}
-
-        <div class="flex flex-grow flex-col px-4 pb-4 sm:px-6 sm:pb-6">
-          <h3 class="mb-2 line-clamp-1 text-center text-lg font-bold text-gray-100 sm:mb-3 sm:text-xl">
-            {project.title}
-          </h3>
-
-          <div class="mb-3 flex items-center justify-center gap-4 text-xs text-gray-400 sm:mb-4 sm:text-sm">
-            <div class="flex flex-col items-center gap-2">
-              <Download class="h-3 w-3 sm:h-4 sm:w-4" />
-              <span class="whitespace-nowrap">{formatNumber(project.downloads)} downloads</span>
-            </div>
-            <div class="flex flex-col items-center gap-2">
-              <Heart class="h-3 w-3 sm:h-4 sm:w-4" />
-              <span class="whitespace-nowrap">{formatNumber(project.followers)} follows</span>
-            </div>
-          </div>
-
-          <p class="mb-3 line-clamp-2 flex-grow text-xs leading-relaxed text-gray-300 sm:mb-4 sm:line-clamp-3 sm:text-sm">
-            {project.description}
-          </p>
-
-          {project.categories.length > 0 && (
-            <div class="mb-3 sm:mb-4">
-              <div class="flex flex-wrap justify-center gap-1 sm:gap-2">
-                {project.categories.slice(0, 2).map((category) => (
-                  <span
-                    key={category}
-                    class="rounded-md bg-blue-500/20 px-2 py-1 text-xs text-blue-300"
-                  >
-                    {capitalizeFirst(category)}
-                  </span>
-                ))}
-                {project.categories.length > 2 && (
-                  <span class="rounded-md bg-gray-600/50 px-2 py-1 text-xs text-gray-400">
-                    +{project.categories.length - 2} more
-                  </span>
-                )}
-              </div>
-            </div>
-          )}
-
-          {project.loaders.length > 0 && (
-            <div class="flex flex-wrap justify-center gap-1 sm:gap-2">
-              {project.loaders.slice(0, 2).map((loader) => (
-                <span
-                  key={loader}
-                  class="rounded-md bg-green-500/20 px-2 py-1 text-xs text-green-300"
-                >
-                  {capitalizeFirst(loader)}
-                </span>
-              ))}
-              {project.loaders.length > 2 && (
-                <span class="rounded-md bg-gray-600/50 px-2 py-1 text-xs text-gray-400">
-                  +{project.loaders.length - 2} more
-                </span>
-              )}
-            </div>
           )}
         </div>
+        <div class="min-w-0">
+          <h3 class="mt-0.5 truncate text-base font-semibold text-gray-100">
+            {project.title}
+          </h3>
+          <div class="mt-1 flex items-center gap-3 text-xs text-gray-400">
+            <span class="flex items-center gap-1.5">
+              <Download class="h-3.5 w-3.5" />
+              {formatNumber(project.downloads)}
+            </span>
+            <span class="flex items-center gap-1.5">
+              <Heart class="h-3.5 w-3.5" />
+              {formatNumber(project.followers)}
+            </span>
+          </div>
+        </div>
       </div>
+
+      <p class="mt-4 line-clamp-3 text-sm leading-relaxed text-gray-400">
+        {project.description}
+      </p>
+
+      {tags.length > 0 && (
+        <div class="mt-auto flex flex-wrap gap-1.5 pt-5">
+          {tags.map((tag) => (
+            <span
+              key={tag}
+              class="rounded-lum-4 lum-bg-gray-700/40 px-2 py-1 text-xs font-medium text-gray-300"
+            >
+              {capitalizeFirst(tag)}
+            </span>
+          ))}
+        </div>
+      )}
     </a>
   );
 });

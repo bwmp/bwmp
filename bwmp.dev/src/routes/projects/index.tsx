@@ -4,7 +4,7 @@ import ProjectCard from '~/components/projects/ProjectCard';
 import ModrinthCard, {
   type ModrinthProject,
 } from '~/components/projects/ModrinthCard';
-import projects from '~/data/projects.json';
+import { featuredProjects, otherProjects } from '~/data/projects';
 
 export const useModrinth = routeLoader$<ModrinthProject[]>(async () => {
   try {
@@ -33,67 +33,56 @@ export default component$(() => {
   const modrinthProjects = useModrinth();
 
   return (
-    <div class="mx-auto max-w-7xl px-4 py-24">
-      <div class="mb-12">
-        <h1 class="mb-4 text-4xl font-bold text-gray-100 sm:text-5xl">
-          My Projects
-        </h1>
-        <p class="max-w-3xl text-lg leading-relaxed text-gray-400">
-          A collection of projects I've worked on, from web applications to
-          Minecraft mods and Discord bots. Each project represents a learning
-          experience and a step forward in my development journey.
+    <div class="mx-auto max-w-6xl px-4">
+      <header class="py-12 sm:py-16">
+        <h1 class="text-3xl font-bold text-gray-100 sm:text-4xl">Projects</h1>
+        <p class="mt-4 max-w-2xl text-lg leading-relaxed text-gray-400">
+          Everything I've built and still maintain — web apps, Minecraft servers
+          and tooling, and Discord bots. Each one started as a problem I wanted
+          solved.
         </p>
-      </div>
+      </header>
 
-      <div class="mb-12 flex flex-wrap gap-4">
-        <div class="rounded-lg bg-gray-800/50 px-4 py-2">
-          <span class="text-sm font-medium text-gray-300">
-            {projects.length + (modrinthProjects.value?.length || 0)} Total
-            Projects
-          </span>
-        </div>
-        <div class="rounded-lg bg-blue-500/20 px-4 py-2">
-          <span class="text-sm font-medium text-blue-300">
-            {projects.length} Projects
-          </span>
-        </div>
-        {modrinthProjects.value && modrinthProjects.value.length > 0 && (
-          <div class="rounded-lg bg-green-500/20 px-4 py-2">
-            <span class="text-sm font-medium text-green-300">
-              {modrinthProjects.value.length} Minecraft Projects
-            </span>
-          </div>
-        )}
-      </div>
-
-      <section class="mb-16">
-        <h2 class="mb-6 text-2xl font-bold text-gray-100 sm:text-3xl">
-          Portfolio Projects
+      <section
+        aria-labelledby="portfolio-title"
+        class="border-t border-gray-800 py-16"
+      >
+        <h2
+          id="portfolio-title"
+          class="mb-8 text-2xl font-bold text-gray-100 sm:text-3xl"
+        >
+          Products &amp; platforms
         </h2>
-        <p class="mb-8 max-w-3xl text-gray-400">
-          These are some of my main projects that showcase different aspects of
-          my development skills.
-        </p>
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {projects.map((project) => (
-            <ProjectCard
-              key={project.title}
-              project={{ ...project, id: project.title }}
-            />
+
+        <div class="grid gap-5 lg:grid-cols-2">
+          {featuredProjects.map((project) => (
+            <ProjectCard key={project.id} project={project} featured />
+          ))}
+        </div>
+
+        <div class="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {otherProjects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
           ))}
         </div>
       </section>
 
       {modrinthProjects.value && modrinthProjects.value.length > 0 && (
-        <section class="mb-16">
-          <h2 class="mb-6 text-2xl font-bold text-gray-100 sm:text-3xl">
-            Minecraft Mods & Plugins
+        <section
+          aria-labelledby="modrinth-title"
+          class="border-t border-gray-800 py-16"
+        >
+          <h2
+            id="modrinth-title"
+            class="text-2xl font-bold text-gray-100 sm:text-3xl"
+          >
+            Minecraft mods &amp; plugins
           </h2>
-          <p class="mb-8 max-w-3xl text-gray-400">
-            My contributions to the Minecraft community through various mods and
-            plugins available on Modrinth.
+          <p class="mt-2 mb-8 max-w-2xl text-gray-400">
+            Published on Modrinth. Download and follower counts are pulled live
+            from their API.
           </p>
-          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {modrinthProjects.value.map((project) => (
               <ModrinthCard key={project.id} project={project} />
             ))}
@@ -101,32 +90,20 @@ export default component$(() => {
         </section>
       )}
 
-      <section class="mt-16 text-center">
-        <div class="rounded-lg border border-gray-700/50 bg-gray-800/50 p-8">
-          <h3 class="mb-4 text-xl font-semibold text-gray-100">
-            Want to see more of my work?
-          </h3>
-          <p class="mb-6 text-gray-400">
-            Check out my GitHub for more repositories, or visit my main page to
-            learn more about me.
-          </p>
-          <div class="flex flex-wrap justify-center gap-4">
-            <a
-              href="https://github.com/bwmp"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="rounded-lg bg-gray-700/50 px-6 py-3 font-medium text-gray-100 transition-all hover:bg-gray-600/50"
-            >
-              View GitHub Profile
-            </a>
-            <a
-              href="/"
-              class="rounded-lg bg-blue-600/50 px-6 py-3 font-medium text-gray-100 transition-all hover:bg-blue-500/50"
-            >
-              Back to Homepage
-            </a>
-          </div>
-        </div>
+      <section class="border-t border-gray-800 py-16">
+        <p class="text-gray-400">
+          More repositories, including the ones that never made it this far, are
+          on{' '}
+          <a
+            href="https://github.com/bwmp"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-medium text-blue-300 transition-colors hover:text-blue-200"
+          >
+            my GitHub profile
+          </a>
+          .
+        </p>
       </section>
     </div>
   );

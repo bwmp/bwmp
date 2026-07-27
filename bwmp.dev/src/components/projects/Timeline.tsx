@@ -5,21 +5,12 @@ import {
   PropFunction,
   $,
 } from '@builder.io/qwik';
+import { ChevronDown } from 'lucide-icons-qwik';
 import { Tag } from './Tag';
 import { techIconSrc } from '~/data/techIcons';
-import timelineData from '~/data/timeline.json';
+import { datedProjects, type DatedProject } from '~/data/projects';
 
-interface TimelineEntryRaw {
-  id: string;
-  project: string;
-  description: string;
-  start: string;
-  end: string | null;
-  tech?: string[];
-  role?: string;
-}
-
-interface TimelineEntry extends TimelineEntryRaw {
+interface TimelineEntry extends DatedProject {
   startDate: Date;
   endDate: Date | null;
   durationLabel: string;
@@ -63,7 +54,7 @@ export const Timeline = component$<TimelineProps>(() => {
   });
 
   useTask$(() => {
-    const mapped: TimelineEntry[] = (timelineData as TimelineEntryRaw[]).map(
+    const mapped: TimelineEntry[] = datedProjects.map(
       (e) => {
         const startDate = new Date(e.start);
         const endDate = e.end ? new Date(e.end) : null;
@@ -105,30 +96,18 @@ export const Timeline = component$<TimelineProps>(() => {
       <div class="mb-4 flex items-center justify-between">
         <button
           type="button"
-          class="group relative overflow-hidden rounded-lum-2 border border-blue-500/40 bg-gradient-to-r from-blue-600/20 to-blue-500/20 px-4 py-2.5 text-sm font-semibold text-blue-100 shadow-lg shadow-blue-500/10 transition-all hover:border-blue-400/60 hover:from-blue-600/30 hover:to-blue-500/30 hover:shadow-blue-500/20 focus:ring-2 focus:ring-blue-500/60 focus:outline-none active:scale-[0.98]"
+          class="lum-btn rounded-lum-2 lum-bg-gray-800/60 hover:lum-bg-gray-700/70 px-4 py-2 text-sm font-medium text-gray-200"
           aria-expanded={!collapsedAll.value}
           onClick$={() => (collapsedAll.value = !collapsedAll.value)}
         >
-          <span class="relative z-10 flex items-center gap-2">
-            <svg
-              class="h-4 w-4 transition-transform duration-300"
-              style={{
-                transform: collapsedAll.value ? 'rotate(0deg)' : 'rotate(180deg)',
-              }}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-            {collapsedAll.value ? 'Show timeline' : 'Hide timeline'}
-          </span>
-          <div class="absolute inset-0 -z-10 bg-gradient-to-r from-blue-600/0 via-blue-500/30 to-blue-600/0 opacity-0 transition-opacity group-hover:opacity-100" />
+          <ChevronDown
+            size={16}
+            class={{
+              'motion-safe:transition-transform': true,
+              'rotate-180': !collapsedAll.value,
+            }}
+          />
+          {collapsedAll.value ? 'Show timeline' : 'Hide timeline'}
         </button>
       </div>
       <div
@@ -179,14 +158,14 @@ export const Timeline = component$<TimelineProps>(() => {
                 return (
                   <div key={item.id} class="flex items-center gap-2 py-[3px]">
                     <span class="w-[80px] shrink-0 text-right text-[10px] leading-tight text-gray-400 truncate">
-                      {item.project}
+                      {item.title}
                     </span>
                     <div class="relative h-4 flex-1">
                       <div
                         class={{
-                          'absolute top-1/2 h-2 -translate-y-1/2 rounded-full shadow-sm': true,
-                          'bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700': ongoing,
-                          'bg-gradient-to-r from-gray-500 to-gray-600': !ongoing,
+                          'absolute top-1/2 h-2 -translate-y-1/2 rounded-full': true,
+                          'bg-blue-500': ongoing,
+                          'bg-gray-600': !ongoing,
                         }}
                         style={{
                           left: `${startPct.toFixed(2)}%`,
@@ -228,7 +207,7 @@ export const Timeline = component$<TimelineProps>(() => {
                   <div class="flex flex-wrap items-start gap-1.5">
                     <div class="flex min-w-0 flex-1 flex-wrap items-center gap-1.5">
                       <h3 class={`font-semibold text-gray-100 ${titleSize}`}>
-                        {item.project}
+                        {item.title}
                       </h3>
                       {item.role && (
                         <span class="rounded-lum bg-blue-900/40 px-1.5 py-px text-[9px] font-medium text-blue-200">

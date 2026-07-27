@@ -1,5 +1,5 @@
 import { component$, useStore, useVisibleTask$ } from '@builder.io/qwik';
-import { Github } from 'lucide-icons-qwik';
+import { Github, X } from 'lucide-icons-qwik';
 
 interface GitHubUser {
   name: string;
@@ -117,50 +117,55 @@ export default component$(() => {
   return (
     <div class="space-y-6">
       {store.user && (
-        <div class="rounded-lum-2 lum-bg-gray-900/60 border border-gray-700/50 p-6 backdrop-blur-sm">
-          <div class="mb-4 flex items-center gap-4">
-            <Github class="h-6 w-6 text-gray-300" />
-            <h3 class="text-xl font-bold text-gray-100">GitHub Activity</h3>
-          </div>
+        <div class="rounded-lum-2 lum-bg-gray-800/30 p-6">
+          <a
+            href={store.user.html_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-sm font-medium text-gray-300 transition-colors hover:text-white"
+          >
+            <Github class="h-4 w-4" />
+            github.com/bwmp
+          </a>
 
-          <div class="grid grid-cols-2 gap-4 text-center md:grid-cols-4">
-            <div class="space-y-2">
-              <p class="text-2xl font-bold text-blue-400">
+          <div class="mt-6 grid grid-cols-2 gap-6 md:grid-cols-4">
+            <div>
+              <p class="text-2xl font-semibold text-gray-100">
                 {store.user.public_repos}
               </p>
-              <p class="text-sm text-gray-400">Repositories</p>
+              <p class="mt-1 text-sm text-gray-400">Repositories</p>
             </div>
-            <div class="space-y-2">
-              <p class="text-2xl font-bold text-green-400">
+            <div>
+              <p class="text-2xl font-semibold text-gray-100">
                 {store.user.followers}
               </p>
-              <p class="text-sm text-gray-400">Followers</p>
+              <p class="mt-1 text-sm text-gray-400">Followers</p>
             </div>
-            <div class="space-y-2">
-              <p class="text-2xl font-bold text-purple-400">
+            <div>
+              <p class="text-2xl font-semibold text-gray-100">
                 {store.user.following}
               </p>
-              <p class="text-sm text-gray-400">Following</p>
+              <p class="mt-1 text-sm text-gray-400">Following</p>
             </div>
-            <div class="space-y-2">
-              <p class="text-2xl font-bold text-yellow-400">
+            <div>
+              <p class="text-2xl font-semibold text-gray-100">
                 {Math.floor(
                   (Date.now() - new Date(store.user.created_at).getTime()) /
                     (1000 * 60 * 60 * 24 * 365),
                 )}
                 y
               </p>
-              <p class="text-sm text-gray-400">On GitHub</p>
+              <p class="mt-1 text-sm text-gray-400">On GitHub</p>
             </div>
           </div>
         </div>
       )}
 
-      <div class="rounded-lum-2 lum-bg-gray-900/60 border border-gray-700/50 p-6 backdrop-blur-sm">
-        <div class="mb-4 flex items-center justify-between">
-          <h3 class="text-lg font-bold text-gray-100">Contribution Activity</h3>
+      <div class="rounded-lum-2 lum-bg-gray-800/30 p-6">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-2">
+          <h3 class="text-sm font-semibold text-gray-200">Contributions</h3>
           <span class="text-sm text-gray-400">
-            {totalContributions} contributions in the last year
+            {totalContributions} in the last year
           </span>
         </div>
 
@@ -185,9 +190,9 @@ export default component$(() => {
         </div>
 
         {store.selectedDay && (
-          <div class="mt-4 rounded-lg border border-blue-500/50 bg-gray-800/50 p-4">
+          <div class="rounded-lum-2 mt-4 border border-gray-700/50 bg-gray-900/40 p-4">
             <div class="mb-2 flex items-center justify-between">
-              <h4 class="font-semibold text-gray-100">
+              <h4 class="text-sm font-semibold text-gray-100">
                 {new Date(store.selectedDay.date).toLocaleDateString('en-US', {
                   weekday: 'long',
                   year: 'numeric',
@@ -197,12 +202,13 @@ export default component$(() => {
               </h4>
               <button
                 type="button"
-                class="text-gray-400 hover:text-gray-300"
+                aria-label="Dismiss"
+                class="text-gray-400 transition-colors hover:text-gray-200"
                 onClick$={() => {
                   store.selectedDay = null;
                 }}
               >
-                ✕
+                <X class="h-4 w-4" />
               </button>
             </div>
             <div class="flex items-baseline gap-2">

@@ -1,36 +1,28 @@
-import { $, component$, useOnDocument, useSignal } from '@builder.io/qwik';
+import { component$, useSignal } from '@builder.io/qwik';
 import { Link } from '@builder.io/qwik-city';
 import { LogoDiscord, Nav } from '@luminescent/ui-qwik';
-import { Github } from 'lucide-icons-qwik';
+import { ChevronDown, Github } from 'lucide-icons-qwik';
+
+const primaryLinks = [
+  { href: '/projects', label: 'Projects' },
+  { href: '/skills', label: 'Skills' },
+  { href: '/timeline', label: 'Timeline' },
+];
+
+const secondaryLinks = [
+  { href: '/wishlist', label: 'Wishlist' },
+  { href: '/twitter', label: 'Twitter' },
+  { href: '/reactions', label: 'Pure Chaos' },
+];
+
+const linkClass =
+  'lum-btn lum-bg-transparent hover:lum-bg-gray-700/50 rounded-lum-2 px-3 py-2 text-sm font-medium transition-all';
 
 export default component$(() => {
-  const hidden = useSignal(true);
-  useOnDocument('load', $(() => {
-    if (window.location.pathname !== '/') {
-      hidden.value = false;
-    }
-  }));
-
-  useOnDocument(
-    'scroll',
-    $(() => {
-      if (window.location.pathname !== '/') {
-        hidden.value = false;
-        return;
-      }
-      hidden.value = window.scrollY < 10;
-    }),
-  );
+  const moreOpen = useSignal(false);
 
   return (
-    <Nav
-      floating
-      fixed
-      colorClass="lum-bg-lum-input-bg/50 !text-lum-text"
-      class={{
-        '-mt-20': hidden.value,
-      }}
-    >
+    <Nav floating fixed colorClass="lum-bg-lum-input-bg/50 !text-lum-text">
       <Link
         q:slot="start"
         href="/"
@@ -39,57 +31,54 @@ export default component$(() => {
         bwmp
       </Link>
 
-      <div q:slot="center" class="hidden gap-4 md:flex">
-        <button
-          onClick$={() => {
-            if (window.location.pathname === '/') {
-              document.getElementById('about')?.scrollIntoView({
-                behavior: 'smooth',
-              });
-            } else {
-              window.location.href = '/#about';
+      <div q:slot="center" class="hidden items-center gap-1 sm:flex">
+        {primaryLinks.map((link) => (
+          <Link key={link.href} href={link.href} class={linkClass}>
+            {link.label}
+          </Link>
+        ))}
+        <a href="mailto:contact@bwmp.dev" class={`${linkClass} hidden md:flex`}>
+          Contact
+        </a>
+
+        <div
+          class="relative hidden md:block"
+          onFocusOut$={(event, el) => {
+            if (!el.contains(event.relatedTarget as Node | null)) {
+              moreOpen.value = false;
             }
           }}
-          class="lum-btn lum-bg-transparent hover:lum-bg-gray-700/50 rounded-lum-2 px-3 py-2 text-sm font-medium transition-all"
         >
-          About
-        </button>
-        <Link
-          href="/projects"
-          class="lum-btn lum-bg-transparent hover:lum-bg-gray-700/50 rounded-lum-2 px-3 py-2 text-sm font-medium transition-all"
-        >
-          Projects
-        </Link>
-        <Link
-          href="/skills"
-          class="lum-btn lum-bg-transparent hover:lum-bg-gray-700/50 rounded-lum-2 px-3 py-2 text-sm font-medium transition-all"
-        >
-          Skills
-        </Link>
-        <Link
-          href="/timeline"
-          class="lum-btn lum-bg-transparent hover:lum-bg-gray-700/50 rounded-lum-2 px-3 py-2 text-sm font-medium transition-all"
-        >
-          Timeline
-        </Link>
-        <Link
-          href="/wishlist"
-          class="lum-btn lum-bg-transparent hover:lum-bg-gray-700/50 rounded-lum-2 px-3 py-2 text-sm font-medium transition-all"
-        >
-          Wishlist
-        </Link>
-        <Link
-          href="/twitter"
-          class="lum-btn lum-bg-transparent hover:lum-bg-gray-700/50 rounded-lum-2 px-3 py-2 text-sm font-medium transition-all"
-        >
-          Twitter
-        </Link>
-        <Link
-          href="/reactions"
-          class="lum-btn lum-bg-transparent hover:lum-bg-gray-700/50 rounded-lum-2 px-3 py-2 text-sm font-medium transition-all"
-        >
-          Pure Chaos
-        </Link>
+          <button
+            type="button"
+            aria-expanded={moreOpen.value}
+            class={linkClass}
+            onClick$={() => (moreOpen.value = !moreOpen.value)}
+          >
+            More
+            <ChevronDown
+              size={14}
+              class={{
+                'motion-safe:transition-transform': true,
+                'rotate-180': moreOpen.value,
+              }}
+            />
+          </button>
+          {moreOpen.value && (
+            <div class="lum-card lum-bg-lum-card-bg rounded-lum-2 absolute top-full right-0 mt-2 min-w-40 !gap-1 !p-2">
+              {secondaryLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  class={linkClass}
+                  onClick$={() => (moreOpen.value = false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
       <div q:slot="end" class="hidden gap-2 sm:flex">
@@ -97,46 +86,23 @@ export default component$(() => {
       </div>
 
       <div q:slot="mobile" class="flex">
-        <div class="flex flex-col gap-2 justify-start w-full">
-          <div class="flex justify-center gap-4">
-            <Link
-              href="/projects"
-              class="lum-btn lum-bg-transparent hover:lum-bg-gray-700/50 rounded-lum-2 px-3 py-2 text-sm font-medium transition-all"
-            >
-              Projects
-            </Link>
-            <Link
-              href="/skills"
-              class="lum-btn lum-bg-transparent hover:lum-bg-gray-700/50 rounded-lum-2 px-3 py-2 text-sm font-medium transition-all"
-            >
-              Skills
-            </Link>
-            <Link
-              href="/timeline"
-              class="lum-btn lum-bg-transparent hover:lum-bg-gray-700/50 rounded-lum-2 px-3 py-2 text-sm font-medium transition-all"
-            >
-              Timeline
-            </Link>
+        <div class="flex w-full flex-col gap-2">
+          <div class="flex flex-wrap justify-center gap-2">
+            {primaryLinks.map((link) => (
+              <Link key={link.href} href={link.href} class={linkClass}>
+                {link.label}
+              </Link>
+            ))}
+            <a href="mailto:contact@bwmp.dev" class={linkClass}>
+              Contact
+            </a>
           </div>
-          <div class="flex justify-center gap-4">
-            <Link
-              href="/wishlist"
-              class="lum-btn lum-bg-transparent hover:lum-bg-gray-700/50 rounded-lum-2 px-3 py-2 text-sm font-medium transition-all"
-            >
-              Wishlist
-            </Link>
-            <Link
-              href="/twitter"
-              class="lum-btn lum-bg-transparent hover:lum-bg-gray-700/50 rounded-lum-2 px-3 py-2 text-sm font-medium transition-all"
-            >
-              Twitter
-            </Link>
-            <Link
-              href="/reactions"
-              class="lum-btn lum-bg-transparent hover:lum-bg-gray-700/50 rounded-lum-2 px-3 py-2 text-sm font-medium transition-all"
-            >
-              Pure Chaos
-            </Link>
+          <div class="flex flex-wrap justify-center gap-2">
+            {secondaryLinks.map((link) => (
+              <Link key={link.href} href={link.href} class={linkClass}>
+                {link.label}
+              </Link>
+            ))}
           </div>
           <SocialButtons />
         </div>
@@ -145,30 +111,24 @@ export default component$(() => {
   );
 });
 
-export const SocialButtons = component$(({ large }: { large?: boolean }) => {
+export const SocialButtons = component$(() => {
   return (
-    <div class="flex gap-2 justify-evenly">
+    <div class="flex justify-evenly gap-2">
       <a
         href="https://github.com/bwmp"
         title="GitHub"
-        class={{
-          'lum-btn lum-bg-transparent': true,
-          'rounded-lum-4 p-3': large,
-          'rounded-lum-2 p-2': !large,
-        }}
+        aria-label="GitHub"
+        class="lum-btn lum-bg-transparent rounded-lum-2 p-2"
       >
-        <Github size={large ? 32 : 20} />
+        <Github size={20} />
       </a>
       <a
         href="/discord"
         title="Discord"
-        class={{
-          'lum-btn lum-bg-transparent': true,
-          'rounded-lum-4 p-3': large,
-          'rounded-lum-2 p-2': !large,
-        }}
+        aria-label="Discord"
+        class="lum-btn lum-bg-transparent rounded-lum-2 p-2"
       >
-        <LogoDiscord size={large ? 32 : 20} />
+        <LogoDiscord size={20} />
       </a>
     </div>
   );

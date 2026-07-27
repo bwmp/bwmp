@@ -2,73 +2,86 @@ import { component$ } from '@builder.io/qwik';
 import { type DocumentHead } from '@builder.io/qwik-city';
 import TechShowcase from '~/components/skills/TechShowcase';
 
+const expertise = [
+  {
+    area: 'Frontend',
+    items: [
+      'Modern JavaScript/TypeScript frameworks (Qwik, Vue, React)',
+      'Responsive design with Tailwind CSS',
+    ],
+  },
+  {
+    area: 'Backend',
+    items: ['RESTful API design and development'],
+  },
+  {
+    area: 'Minecraft',
+    items: [
+      'Plugin development (Bukkit/Spigot/Paper)',
+      'Mod development (Fabric/Forge)',
+      'Server management & optimization',
+      'Custom world generation',
+    ],
+  },
+  {
+    area: 'DevOps',
+    items: [
+      'Cloud platforms (Cloudflare, OVH)',
+      'Containerization (Docker)',
+      'CI/CD pipelines',
+      'Version control (Git)',
+      'Monitoring & logging (Prometheus, Grafana, Loki)',
+    ],
+  },
+];
+
 export default component$(() => {
   return (
-    <div class="mx-auto max-w-7xl px-4 py-24">
-      <div class="mb-12">
-        <h1 class="mb-4 text-4xl font-bold text-gray-100 sm:text-5xl">
-          Skills & Technologies
-        </h1>
-        <p class="max-w-3xl text-lg leading-relaxed text-gray-400">
-          A showcase of the technologies I work with and my areas of expertise.
-          I'm always learning and adding new tools to my toolkit.
+    <div class="mx-auto max-w-6xl px-4">
+      <header class="py-12 sm:py-16">
+        <h1 class="text-3xl font-bold text-gray-100 sm:text-4xl">Skills</h1>
+        <p class="mt-4 max-w-2xl text-lg leading-relaxed text-gray-400">
+          The technologies I work with and where I've gone deep. I'm always
+          adding to this as projects pull me into new stacks.
         </p>
-      </div>
+      </header>
 
-      <section class="mb-16">
-        <h2 class="mb-6 text-2xl font-bold text-gray-100 sm:text-3xl">
-          Technology Stack
+      <section
+        aria-labelledby="stack-title"
+        class="border-t border-gray-800 py-16"
+      >
+        <h2
+          id="stack-title"
+          class="mb-8 text-2xl font-bold text-gray-100 sm:text-3xl"
+        >
+          Technology stack
         </h2>
         <TechShowcase />
       </section>
 
-      <section class="mb-16">
-        <h2 class="mb-6 text-2xl font-bold text-gray-100 sm:text-3xl">
-          Expertise Areas
+      <section
+        aria-labelledby="expertise-title"
+        class="border-t border-gray-800 py-16"
+      >
+        <h2
+          id="expertise-title"
+          class="mb-8 text-2xl font-bold text-gray-100 sm:text-3xl"
+        >
+          Where I've gone deep
         </h2>
-        <div class="grid gap-8 md:grid-cols-2">
-          <div class="rounded-lg border border-gray-700/50 bg-gray-800/50 p-6">
-            <h3 class="mb-4 text-xl font-semibold text-gray-100">
-              Frontend Development
-            </h3>
-            <ul class="space-y-2 text-gray-300">
-              <li>
-                • Modern JavaScript/TypeScript frameworks (Qwik, Vue, React)
-              </li>
-              <li>• Responsive design with Tailwind CSS</li>
-            </ul>
-          </div>
-          <div class="rounded-lg border border-gray-700/50 bg-gray-800/50 p-6">
-            <h3 class="mb-4 text-xl font-semibold text-gray-100">
-              Backend Development
-            </h3>
-            <ul class="space-y-2 text-gray-300">
-              <li>• RESTful API design and development</li>
-            </ul>
-          </div>
-          <div class="rounded-lg border border-gray-700/50 bg-gray-800/50 p-6">
-            <h3 class="mb-4 text-xl font-semibold text-gray-100">
-              Minecraft Development
-            </h3>
-            <ul class="space-y-2 text-gray-300">
-              <li>• Plugin development (Bukkit/Spigot/Paper)</li>
-              <li>• Mod development (Fabric/Forge)</li>
-              <li>• Server management & optimization</li>
-              <li>• Custom world generation</li>
-            </ul>
-          </div>
-          <div class="rounded-lg border border-gray-700/50 bg-gray-800/50 p-6">
-            <h3 class="mb-4 text-xl font-semibold text-gray-100">
-              DevOps & Tools
-            </h3>
-            <ul class="space-y-2 text-gray-300">
-              <li>• Cloud platforms (Cloudflare, OVH)</li>
-              <li>• Containerization (Docker)</li>
-              <li>• CI/CD pipelines</li>
-              <li>• Version control (Git)</li>
-              <li>• Monitoring & logging (Prometheus, Grafana, Loki)</li>
-            </ul>
-          </div>
+        <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          {expertise.map((group) => (
+            <div key={group.area}>
+              <h3 class="mb-3 text-sm font-semibold text-gray-200">
+                {group.area}
+              </h3>
+              <ul class="space-y-2 text-sm leading-relaxed text-gray-400">
+                {group.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </section>
     </div>

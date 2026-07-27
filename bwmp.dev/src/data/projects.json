@@ -1,8 +1,67 @@
 [
+    {
+    "id": "luma",
+    "title": "Luma SSH",
+    "description": "A lightweight, cross-platform terminal and SSH client for Windows, macOS, Linux, iOS, and Android, built with Tauri instead of Electron. Combines local and serial terminals, saved SSH hosts, dual-pane SFTP, and end-to-end encrypted config sync — no account required.",
+    "imageUrl": "/icons/luma.png",
+    "featured": true,
+    "role": "Creator",
+    "start": "2026-07-15",
+    "end": null,
+    "tech": ["TypeScript", "Rust", "Tauri", "React"],
+    "links": [
+      {
+        "name": "Website",
+        "url": "https://luma.bwmp.dev",
+        "icon": "website"
+      },
+      {
+        "name": "GitHub",
+        "url": "https://github.com/LuminescentDev/Luma",
+        "icon": "github"
+      },
+      {
+        "name": "Discord",
+        "url": "https://discord.gg/ebJVw3pXm6",
+        "icon": "discord"
+      }
+    ]
+  },
   {
+    "id": "mochi",
+    "title": "Mochi",
+    "description": "Mochi is a privacy-focused analytics platform for Discord bots. Track command usage, guild growth, and bot health from a unified dashboard — self-hosted via Docker Compose or fully managed with Mochi Cloud.",
+    "imageUrl": "/icons/mochi.svg",
+    "featured": true,
+    "role": "Creator",
+    "start": "2026-07-08",
+    "end": null,
+    "tech": [
+      "TypeScript",
+      "Docker"
+    ],
+    "links": [
+      {
+        "name": "Website",
+        "url": "https://mochi.software",
+        "icon": "website"
+      },
+      {
+        "name": "GitHub",
+        "url": "https://github.com/mochi-analytics/mochi",
+        "icon": "github"
+      }
+    ]
+  },
+  {
+    "id": "serverspulse",
     "title": "ServersPulse",
     "description": "ServersPulse gives server admins a live operations cockpit with TPS/MSPT observability, player return trends, domain attribution, and team-ready reporting in one place.",
     "imageComponentKey": "ServersPulse",
+    "featured": true,
+    "role": "Creator",
+    "start": "2026-02-19",
+    "end": null,
     "tech": [
       "Qwik",
       "Minecraft",
@@ -10,37 +69,20 @@
     ],
     "links": [
       {
-        "name": "Visit Website",
+        "name": "Website",
         "url": "https://serverspulse.com",
         "icon": "website"
       }
     ]
   },
   {
-    "title": "Mochi",
-    "description": "Mochi is a privacy-focused analytics platform for Discord bots. Track command usage, guild growth, and bot health from a unified dashboard — self-hosted via Docker Compose or fully managed with Mochi Cloud.",
-    "imageUrl": "/icons/mochi.svg",
-    "tech": [
-      "TypeScript",
-      "Docker"
-    ],
-    "links": [
-      {
-        "name": "Visit Website",
-        "url": "https://mochi.software",
-        "icon": "website"
-      },
-      {
-        "name": "Github",
-        "url": "https://github.com/mochi-analytics/mochi",
-        "icon": "github"
-      }
-    ]
-  },
-  {
+    "id": "mineplace",
     "title": "Mineplace",
-    "description": "Mineplace is a 3d reimagination of the popular reddit community, r/place. It allows users to place pixels on a large canvas in a 3D space, creating a collaborative art piece.",
+    "description": "Mineplace is a 3D reimagination of the popular reddit community, r/place. It allows users to place pixels on a large canvas in a 3D space, creating a collaborative art piece.",
     "imageUrl": "/icons/mineplace.svg",
+    "role": "Founder / Lead Dev",
+    "start": "2025-08-09",
+    "end": null,
     "tech": [
       "Qwik",
       "Minecraft",
@@ -48,18 +90,19 @@
     ],
     "links": [
       {
-        "name": "Visit Website",
+        "name": "Website",
         "url": "https://mineplace.me",
         "icon": "website"
       },
       {
-        "name": "Github",
+        "name": "GitHub",
         "url": "https://github.com/mineplace-me",
         "icon": "github"
       }
     ]
   },
   {
+    "id": "aethersmp",
     "title": "AetherSMP",
     "description": "A Survival Minecraft server featuring custom Aether-themed world generation!",
     "imageComponentKey": "AetherSMP",
@@ -71,38 +114,45 @@
     ],
     "links": [
       {
-        "name": "Visit Website",
+        "name": "Website",
         "url": "https://aethersmp.com",
         "icon": "website"
       },
       {
-        "name": "Github",
+        "name": "GitHub",
         "url": "https://github.com/aetherminecraft",
         "icon": "github"
       }
     ]
   },
   {
+    "id": "lumin",
     "title": "Lumin",
     "description": "A silly little moon themed bot. Interactions, Utilities, Fun!",
     "imageComponentKey": "Lumin",
+    "featured": true,
+    "role": "Creator",
+    "start": "2020-08-27",
+    "end": null,
     "tech": [
+      "TypeScript",
       "Qwik"
     ],
     "links": [
       {
-        "name": "Visit Website",
+        "name": "Website",
         "url": "https://lumin.luminescent.dev",
         "icon": "website"
       },
       {
-        "name": "Github",
+        "name": "GitHub",
         "url": "https://github.com/bwmp/lumin",
         "icon": "github"
       }
     ]
   },
   {
+    "id": "twinkforsale",
     "title": "TwinkForSale",
     "description": "A private/application only file sharing website I made using 80% ai just to see how far i could get it to go! All files are saved to an s3 bucket, it supports multiple domains, and has discord oauth for login.",
     "imageComponentKey": "TwinkForSale",
@@ -111,33 +161,37 @@
     ],
     "links": [
       {
-        "name": "Visit Website",
+        "name": "Website",
         "url": "https://twink.forsale",
         "icon": "website"
       },
       {
-        "name": "Github",
+        "name": "GitHub",
         "url": "https://github.com/luminescentdev/twinkforsale",
         "icon": "github"
       }
     ]
   },
   {
+    "id": "birdflop",
     "title": "Birdflop",
-    "description": "A registered 501(c)(3) nonprofit server host aiming to provide affordable and accessible hosting and resources.",
+    "description": "A registered 501(c)(3) nonprofit server host aiming to provide affordable and accessible hosting and resources. My role involves development of parts such as the website, support tools, game panel, and more.",
     "imageComponentKey": "Birdflop",
+    "role": "Director, Developer, Support",
+    "start": "2021-07-18",
+    "end": null,
     "tech": [
       "Qwik",
       "Minecraft"
     ],
     "links": [
       {
-        "name": "Visit Website",
+        "name": "Website",
         "url": "https://birdflop.com",
         "icon": "website"
       },
       {
-        "name": "Github",
+        "name": "GitHub",
         "url": "https://github.com/birdflop/web",
         "icon": "github"
       },
@@ -149,17 +203,20 @@
     ]
   },
   {
+    "id": "vtuber-nook",
     "title": "Vtuber Nook",
     "description": "A website to browse curated free assets including overlays, PNGtuber models, emotes, and more. Search by category and submit your own finds to help the community.",
-    "imageComponentKey": "VtuberNook",
     "imageUrl": "/icons/vtubernook.png",
+    "role": "Developer, Support",
+    "start": "2026-02-01",
+    "end": null,
     "tech": [
       "Qwik",
       "TypeScript"
     ],
     "links": [
       {
-        "name": "Visit Website",
+        "name": "Website",
         "url": "https://vtuber-nook.com",
         "icon": "website"
       },
@@ -168,6 +225,31 @@
         "url": "https://x.com/vtubernook",
         "icon": "twitter"
       }
+    ]
+  },
+  {
+    "id": "pishock",
+    "title": "PiShock",
+    "description": "Currently a developer for PiShock, I work on various parts such as the website, a desktop application, and more miscellaneous things.",
+    "role": "Full Stack Dev",
+    "start": "2024-06-19",
+    "end": null,
+    "tech": [
+      "Vue",
+      "Python",
+      "C#"
+    ]
+  },
+  {
+    "id": "simplymc",
+    "title": "SimplyMC",
+    "description": "A Minecraft multitool for developers, server owners and players. This project has now been merged directly into the birdflop website and is still worked on there.",
+    "role": "Founder / Lead Dev",
+    "start": "2021-01-03",
+    "end": "2024-02-21",
+    "tech": [
+      "Qwik",
+      "Minecraft"
     ]
   }
 ]
